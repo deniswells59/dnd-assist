@@ -37,3 +37,7 @@ export const receivePermission = permission => ({
   type: types.RECEIVE_PERMISSION,
   permission
 })
+
+export const playSound = permission => ({
+  type: types.PLAY_SOUND,
+})

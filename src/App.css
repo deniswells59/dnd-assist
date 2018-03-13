@@ -39,8 +39,9 @@ body {
   left: 10px;
   z-index: 100;
   box-shadow: 1px 1px 1px 1px black;
-  min-height: 100px;
-  min-width: 100px;
+  min-height: 400px;
+  min-width: 300px;
+  max-width: 88vw;
   background: rgb(235, 235, 235);
   padding: 2rem;
 }
