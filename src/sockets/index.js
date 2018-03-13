@@ -1,5 +1,5 @@
 import * as types from '../constants/ActionTypes';
-import { addUser, messageReceived, populateUsersList } from '../actions';
+import { addUser, messageReceived, populateUsersList, receivePermission } from '../actions';
 
 const setupSocket = (dispatch, username) => {
   const socket = new WebSocket('ws://localhost:8989');
@@ -12,6 +12,7 @@ const setupSocket = (dispatch, username) => {
 
   socket.onmessage = (event) => {
     const data = JSON.parse(event.data);
+
     switch (data.type) {
       case types.ADD_MESSAGE:
         dispatch(messageReceived(data.message, data.author));
@@ -21,6 +22,10 @@ const setupSocket = (dispatch, username) => {
         break;
       case types.USERS_LIST:
         dispatch(populateUsersList(data.users));
+        break;
+      case types.RECEIVE_PERMISSION:
+        console.log('UNLOCK SOCKET');
+        dispatch(receivePermission(data.permission));
         break;
       default:
         break;

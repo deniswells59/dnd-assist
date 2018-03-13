@@ -43,6 +43,13 @@ wss.on('connection', (ws) => {
         }, ws);
 
         break;
+      case 'UNLOCK_PERMISSION':
+        broadcast({
+          type: 'RECEIVE_PERMISSION',
+          permission: data.permission,
+        }, ws);
+
+        break;
       default:
         break;
     }

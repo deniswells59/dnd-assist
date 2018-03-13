@@ -1,4 +1,4 @@
-import { takeEvery } from 'redux-saga/effects';
+import { takeEvery, all } from 'redux-saga/effects';
 import * as types from '../constants/ActionTypes';
 
 const handleNewMessage = function* handleNewMessage(params) {
@@ -8,4 +8,16 @@ const handleNewMessage = function* handleNewMessage(params) {
   })
 }
 
-export default handleNewMessage;
+const handleUnlockPermissions = function* handleUnlockPermissions(params) {
+  yield takeEvery(types.UNLOCK_PERMISSION, (action) => {
+    console.log('UNLOCK SAGA');
+    params.socket.send(JSON.stringify(action));
+  })
+}
+
+export default function* rootSaga(params) {
+  yield all([
+    handleNewMessage(params),
+    handleUnlockPermissions(params),
+  ])
+};

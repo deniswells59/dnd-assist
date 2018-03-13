@@ -27,3 +27,13 @@ export const populateUsersList = users => ({
   type: types.USERS_LIST,
   users
 })
+
+export const unlockPermission = permission => ({
+  type: types.UNLOCK_PERMISSION,
+  permission
+})
+
+export const receivePermission = permission => ({
+  type: types.RECEIVE_PERMISSION,
+  permission
+})
