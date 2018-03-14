@@ -52,3 +52,8 @@ export const resetSound = sound => ({
   type: types.RESET_SOUND,
   sound
 })
+
+export const userLoginAttempt = credentials => ({
+  type: types.ATTEMPT_USER_LOGIN,
+  credentials
+})

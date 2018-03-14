@@ -1,4 +1,5 @@
-import { takeEvery, all } from 'redux-saga/effects';
+import { takeEvery, takeLatest, put, all } from 'redux-saga/effects';
+import { delay } from 'redux-saga';
 import * as types from '../constants/ActionTypes';
 
 const handleNewMessage = function* handleNewMessage(params) {
@@ -20,10 +21,35 @@ const handleSoundPlay = function* handleSoundPlay(params) {
   })
 }
 
+
+const firstTimeUser = {
+  id: '123',
+  name: 'Skip Bo',
+  tutorialComplete: false,
+};
+
+const secondTimerUser = {
+  ...firstTimeUser,
+  tutorialComplete: true
+}
+
+const userLoginAttempt = function* userLoginAttempt(credentials) {
+  yield takeLatest(types.ATTEMPT_USER_LOGIN, function* login(action) {
+    try {
+      yield delay(500);
+      yield put({ type:'USER_LOGIN', user: firstTimeUser });
+    } catch (e) {
+      // TODO
+    }
+  })
+}
+
+
 export default function* rootSaga(params) {
   yield all([
     handleSoundPlay(params),
     handleNewMessage(params),
     handleUnlockPermissions(params),
+    userLoginAttempt(),
   ])
 };
