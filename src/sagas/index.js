@@ -36,8 +36,10 @@ const secondTimerUser = {
 const userLoginAttempt = function* userLoginAttempt(credentials) {
   yield takeLatest(types.ATTEMPT_USER_LOGIN, function* login(action) {
     try {
-      yield delay(500);
-      yield put({ type:'USER_LOGIN', user: firstTimeUser });
+      let user = firstTimeUser;
+      yield delay(500); // API CALL GOES HERE :)
+      window.localStorage.setItem('auth', JSON.stringify(user));
+      yield put({ type:'USER_LOGIN', user });
     } catch (e) {
       // TODO
     }
