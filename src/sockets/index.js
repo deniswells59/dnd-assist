@@ -2,7 +2,7 @@ import * as types from '../constants/ActionTypes';
 import { addUser, messageReceived, populateUsersList, receivePermission } from '../actions';
 
 const setupSocket = (dispatch, username) => {
-  const socket = new WebSocket('ws://192.168.150.161:8989');
+  const socket = new WebSocket('ws://10.0.0.5:8989');
   socket.onopen = () => {
     socket.send(JSON.stringify({
       type: types.ADD_USER,
@@ -24,7 +24,6 @@ const setupSocket = (dispatch, username) => {
         dispatch(populateUsersList(data.users));
         break;
       case types.RECEIVE_PERMISSION:
-        console.log('UNLOCK SOCKET');
         dispatch(receivePermission(data.permission));
         break;
       default:

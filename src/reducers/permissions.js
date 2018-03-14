@@ -1,6 +1,5 @@
 const initialState = {
   map: false,
-  playing: false,
 };
 
 const permissions = (state = initialState, action) => {

@@ -33,10 +33,9 @@ body {
     border-right: 1px solid #3f3f3f;
     height: 100%;
 }
-.permissions {
+#permissions, #soundboard {
   position: absolute;
   bottom: 10px;
-  left: 10px;
   z-index: 100;
   box-shadow: 1px 1px 1px 1px black;
   min-height: 400px;
@@ -44,4 +43,12 @@ body {
   max-width: 88vw;
   background: rgb(235, 235, 235);
   padding: 2rem;
+}
+
+#permissions {
+  left: 10px;
+}
+
+#soundboard {
+  right: 10px;
 }
