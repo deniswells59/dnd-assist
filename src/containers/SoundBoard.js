@@ -4,10 +4,10 @@ import { playSound, resetSound } from '../actions'
 
 const mapDispatchToProps = dispatch => ({
   dispatchSound: (sound) => {
-    dispatch(playSound(sound))
+    dispatch(playSound(sound));
   },
   dispatchSoundReset: (sound) => {
-    dispatch(resetSound(sound))
+    dispatch(resetSound(sound));
   }
 });
 

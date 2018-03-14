@@ -1,5 +1,5 @@
 import * as types from '../constants/ActionTypes';
-import { addUser, messageReceived, populateUsersList, receivePermission } from '../actions';
+import { addUser, messageReceived, populateUsersList, receivePermission, receiveSound } from '../actions';
 
 const setupSocket = (dispatch, username) => {
   const socket = new WebSocket('ws://10.0.0.5:8989');
@@ -25,6 +25,9 @@ const setupSocket = (dispatch, username) => {
         break;
       case types.RECEIVE_PERMISSION:
         dispatch(receivePermission(data.permission));
+        break;
+      case types.RECEIVE_SOUND:
+        dispatch(receiveSound(data.sound));
         break;
       default:
         break;

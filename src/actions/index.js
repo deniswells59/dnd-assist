@@ -43,6 +43,11 @@ export const playSound = sound => ({
   sound
 })
 
+export const receiveSound = sound => ({
+  type: types.RECEIVE_SOUND,
+  sound
+})
+
 export const resetSound = sound => ({
   type: types.RESET_SOUND,
   sound

@@ -10,13 +10,19 @@ const handleNewMessage = function* handleNewMessage(params) {
 
 const handleUnlockPermissions = function* handleUnlockPermissions(params) {
   yield takeEvery(types.UNLOCK_PERMISSION, (action) => {
-    console.log('UNLOCK SAGA');
+    params.socket.send(JSON.stringify(action));
+  })
+}
+
+const handleSoundPlay = function* handleSoundPlay(params) {
+  yield takeEvery(types.PLAY_SOUND, (action) => {
     params.socket.send(JSON.stringify(action));
   })
 }
 
 export default function* rootSaga(params) {
   yield all([
+    handleSoundPlay(params),
     handleNewMessage(params),
     handleUnlockPermissions(params),
   ])

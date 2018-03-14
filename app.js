@@ -50,6 +50,14 @@ wss.on('connection', (ws) => {
         }, ws);
 
         break;
+
+      case 'PLAY_SOUND':
+        broadcast({
+          type: 'RECEIVE_SOUND',
+          sound: data.sound,
+        }, ws);
+
+        break;
       default:
         break;
     }
