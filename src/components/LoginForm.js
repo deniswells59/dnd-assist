@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 
 class LoginForm extends Component {
+  componentDidMount() {
+    this.props.checkUser();
+  }
+
   handleSubmit(e) {
     e.preventDefault();
-    e.preventDefault();
-    console.log('e', this.props.dispatch);
 
     this.props.dispatch({
       user: this.user.value,
@@ -16,9 +18,10 @@ class LoginForm extends Component {
     return (
       <form
         onSubmit={this.handleSubmit.bind(this)}>
+        <label>Login</label>
         <input ref={ref => this.user = ref} type="text" placeholder="User"/>
         <input ref={ref => this.pass = ref} type="password" placeholder="Pass"/>
-        <input type="submit" value="SUBMIT"/>
+        <input type="submit" value="Enter"/>
       </form>
     )
   }

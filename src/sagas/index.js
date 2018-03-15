@@ -22,13 +22,14 @@ const handleSoundPlay = function* handleSoundPlay(params) {
 }
 
 
+
 const firstTimeUser = {
   id: '123',
   name: 'Skip Bo',
   tutorialComplete: false,
 };
 
-const secondTimerUser = {
+const secondTimeUser = {
   ...firstTimeUser,
   tutorialComplete: true
 }
@@ -46,6 +47,14 @@ const userLoginAttempt = function* userLoginAttempt(credentials) {
   })
 }
 
+const handleUserCheck = function* checkUser() {
+  yield takeEvery(types.CHECK_USER, function* login() {
+    const data = window.localStorage.getItem('auth');
+    const user = JSON.parse(data);
+
+    yield put({ type:'USER_LOGIN', user });
+  })
+}
 
 export default function* rootSaga(params) {
   yield all([
@@ -53,5 +62,6 @@ export default function* rootSaga(params) {
     handleNewMessage(params),
     handleUnlockPermissions(params),
     userLoginAttempt(),
+    handleUserCheck()
   ])
 };

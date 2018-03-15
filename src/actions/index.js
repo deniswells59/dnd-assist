@@ -57,3 +57,7 @@ export const userLoginAttempt = credentials => ({
   type: types.ATTEMPT_USER_LOGIN,
   credentials
 })
+
+export const checkUser = () => ({
+  type: types.CHECK_USER
+})

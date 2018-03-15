@@ -10,5 +10,6 @@ export const PLAY_SOUND = 'PLAY_SOUND'
 export const RESET_SOUND = 'RESET_SOUND'
 export const RECEIVE_SOUND = 'RECEIVE_SOUND'
 
+export const CHECK_USER = 'CHECK_USER'
 export const USER_LOGIN = 'USER_LOGIN'
 export const ATTEMPT_USER_LOGIN = 'ATTEMPT_USER_LOGIN'
