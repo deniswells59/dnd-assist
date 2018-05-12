@@ -175,3 +175,32 @@ form input[type="submit"] {
   0%   { opacity: 0; }
   100% { opacity: 1; }
 }
+
+.player-info {
+  margin-top: 30px;
+  padding: 25px;
+  border: 6px solid #000;
+}
+.player-info:first-of-type {
+  margin-top: 0px;
+}
+
+.player-info-list {
+  list-style: none;
+}
+.player-info-item {
+  text-align: left;
+  padding: 5px;
+  font-size: 1.2rem;
+}
+.player-info-single {
+  text-align: center;
+  font-size: 1.4rem;
+  padding: 10px;
+}
+
+.player-info-title {
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  padding-bottom: 10px;
+}

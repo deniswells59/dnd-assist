@@ -18,7 +18,6 @@ class Start extends Component {
   }
 
   render() {
-    console.log(this.state);
     return(
       <div className="start">
         <div className="start-controls">

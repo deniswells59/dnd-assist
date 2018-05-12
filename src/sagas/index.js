@@ -25,6 +25,9 @@ const firstTimeUser = {
   id: '123',
   name: 'Skip Bo',
   tutorialComplete: false,
+  traits: ['Human', 'Rogue', 'Chick Magnet'],
+  hitPoints: ['12/24'],
+  expPoints: ['3000'],
 };
 
 const secondTimeUser = {

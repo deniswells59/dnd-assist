@@ -1,15 +1,25 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import PlayerInfo from './PlayerInfo';
 
 class Player extends Component {
-  componentDidMount() {
-
-  }
-
   render() {
+    const { user } = this.props;
+
     return(
       <div className="player">
-        <h1>Player Stats</h1>
+        <PlayerInfo
+          title={user.name}
+          listItems={user.traits}
+        />
+        <PlayerInfo
+          title="Hit Points"
+          listItems={user.hitPoints}
+        />
+        <PlayerInfo
+          title="Exp Points"
+          listItems={user.expPoints}
+        />
       </div>
     )
   }
