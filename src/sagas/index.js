@@ -21,8 +21,6 @@ const handleSoundPlay = function* handleSoundPlay(params) {
   })
 }
 
-
-
 const firstTimeUser = {
   id: '123',
   name: 'Skip Bo',
@@ -37,7 +35,7 @@ const secondTimeUser = {
 const userLoginAttempt = function* userLoginAttempt(credentials) {
   yield takeLatest(types.ATTEMPT_USER_LOGIN, function* login(action) {
     try {
-      let user = firstTimeUser;
+      let user = secondTimeUser;
       yield delay(500); // API CALL GOES HERE :)
       window.localStorage.setItem('auth', JSON.stringify(user));
       yield put({ type:'USER_LOGIN', user });
