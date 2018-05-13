@@ -4,11 +4,12 @@ import { Redirect } from 'react-router';
 
 
 import LoginForm from './LoginForm';
-import Start from './Start';
+// import Start from './Start';
 
 const Main = ({ user, dispatch, checkUser }) => (
   <div>
-    { user && user.id && user.tutorialComplete && <Start /> }
+    {/* Changes this top route to <Start /> soon! */}
+    { user && user.id && user.tutorialComplete && <Redirect to='/player' /> }
     { user && user.id && !user.tutorialComplete && <Redirect to='/player' /> }
     { (!user || !user.id) &&
         <LoginForm checkUser={checkUser} dispatch={dispatch} /> }

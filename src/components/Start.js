@@ -8,7 +8,11 @@ class Start extends Component {
   }
 
   componentDidMount() {
-    setTimeout(this.showButton, 3000);
+    this.timeout = setTimeout(this.showButton, 3000);
+  }
+
+  componentWillUnmount() {
+    clearTimeout(this.timeout);
   }
 
   showButton = () => {

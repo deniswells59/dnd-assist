@@ -12,7 +12,7 @@ class PlayerInfo extends Component {
 
   render() {
     return (
-      <div className="player-info">
+      <div onClick={() => this.props.openEditor(this.props.listItems)} className="player-info">
         <div className="player-info-title">
           {this.props.title}
         </div>

@@ -63,6 +63,7 @@ export default function* rootSaga(params) {
     handleNewMessage(params),
     handleUnlockPermissions(params),
     userLoginAttempt(),
-    handleUserCheck()
+    handleUserCheck(),
+    handleUserUpdate(),
   ])
 };
