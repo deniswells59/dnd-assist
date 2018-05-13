@@ -1,6 +1,9 @@
 import { takeEvery, takeLatest, put, all } from 'redux-saga/effects';
 import { delay } from 'redux-saga';
+import { select } from 'redux-saga/effects';
 import * as types from '../constants/ActionTypes';
+
+const getUser = state => state.user;
 
 const handleNewMessage = function* handleNewMessage(params) {
   yield takeEvery(types.ADD_MESSAGE, (action) => {
@@ -54,6 +57,26 @@ const handleUserCheck = function* checkUser() {
     const user = JSON.parse(data);
 
     yield put({ type:'USER_LOGIN', user });
+  })
+}
+
+const handleUserUpdate = function* userUpdate() {
+  yield takeLatest(types.UPDATE_USER_ATTEMPT, function* updateUser(action) {
+    try {
+      const oldUser = yield select(getUser);
+      const newUser = action.user;
+      yield delay(500); // API CALL GOES HERE :)
+      const user = {
+        ...oldUser,
+        ...newUser
+      };
+
+      window.localStorage.setItem('auth', JSON.stringify(user));
+
+      yield put({ type:types.UPDATE_USER_SUCCESS, user });
+    } catch (e) {
+      // TODO
+    }
   })
 }
 

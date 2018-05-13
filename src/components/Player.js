@@ -17,6 +17,12 @@ class Player extends Component {
     })
   }
 
+  closeEditor = () => {
+    this.setState({
+      editorOpen: false,
+    })
+  }
+
   render() {
     const { user } = this.props;
     const { editorOpen, editorItems } = this.state;
@@ -41,8 +47,9 @@ class Player extends Component {
 
         {editorOpen && (
           <Editor
+            {...this.props}
+            closeEditor={this.closeEditor}
             items={editorItems}
-            user={user}
           />
         )}
 

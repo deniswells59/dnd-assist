@@ -16,6 +16,19 @@ export const addUser = name => ({
   name
 })
 
+export const updateUserAttempt = user => ({
+  type: types.UPDATE_USER_ATTEMPT,
+  user
+})
+
+export const updateUserSuccess = user => {
+  console.log('SUCCESS')
+  return {
+    type: types.UPDATE_USER_SUCCESS,
+    user
+  }
+}
+
 export const messageReceived = (message, author) => ({
   type: types.MESSAGE_RECEIVED,
   id: nextMessageId++,

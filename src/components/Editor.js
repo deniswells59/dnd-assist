@@ -47,6 +47,12 @@ class Editor extends Component {
     this.setState(newState);
   }
 
+  submitUser = (e) => {
+    e.preventDefault();
+    this.props.dispatchUpdateUser(this.state);
+    setTimeout(this.props.closeEditor, 600);
+  }
+
   render() {
     const { items } = this.props;
     const isTraits = items && items.length > 1;
@@ -56,7 +62,7 @@ class Editor extends Component {
     return (
       <div className="info-editor-wrapper">
         <div className="info-editor">
-          <form action="">
+          <form onSubmit={this.submitUser}>
             {isTraits && (
               <span>
                 <label htmlFor="name">NAME</label>
@@ -72,7 +78,7 @@ class Editor extends Component {
                 {traits.map(this.renderTraitsInput)}
               </span>
             )}
-
+            <input type="submit" value="SAVE" />
           </form>
         </div>
       </div>
