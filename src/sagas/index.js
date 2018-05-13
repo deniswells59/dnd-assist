@@ -3,7 +3,13 @@ import { delay } from 'redux-saga';
 import { select } from 'redux-saga/effects';
 import * as types from '../constants/ActionTypes';
 
-const getUser = state => state.user;
+const getUserFromStore = state => state.user;
+
+const saveUserToLocalStorage = (user) => {
+  window.localStorage.setItem('auth', JSON.stringify(user));
+};
+
+const getUserFromLocalStorage = () => window.localStorage.getItem('auth');
 
 const handleNewMessage = function* handleNewMessage(params) {
   yield takeEvery(types.ADD_MESSAGE, (action) => {
@@ -43,8 +49,10 @@ const userLoginAttempt = function* userLoginAttempt(credentials) {
     try {
       let user = secondTimeUser;
       yield delay(500); // API CALL GOES HERE :)
-      window.localStorage.setItem('auth', JSON.stringify(user));
-      yield put({ type:'USER_LOGIN', user });
+
+      saveUserToLocalStorage(user);
+
+      yield put({ type: types.USER_LOGIN, user });
     } catch (e) {
       // TODO
     }
@@ -53,17 +61,17 @@ const userLoginAttempt = function* userLoginAttempt(credentials) {
 
 const handleUserCheck = function* checkUser() {
   yield takeEvery(types.CHECK_USER, function* login() {
-    const data = window.localStorage.getItem('auth');
+    const data = getUserFromLocalStorage();
     const user = JSON.parse(data);
 
-    yield put({ type:'USER_LOGIN', user });
+    yield put({ type: types.USER_LOGIN, user });
   })
 }
 
 const handleUserUpdate = function* userUpdate() {
   yield takeLatest(types.UPDATE_USER_ATTEMPT, function* updateUser(action) {
     try {
-      const oldUser = yield select(getUser);
+      const oldUser = yield select(getUserFromStore);
       const newUser = action.user;
       yield delay(500); // API CALL GOES HERE :)
       const user = {
@@ -71,7 +79,7 @@ const handleUserUpdate = function* userUpdate() {
         ...newUser
       };
 
-      window.localStorage.setItem('auth', JSON.stringify(user));
+      saveUserToLocalStorage(user);
 
       yield put({ type:types.UPDATE_USER_SUCCESS, user });
     } catch (e) {
