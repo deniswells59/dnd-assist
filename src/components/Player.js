@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import PlayerInfo from './PlayerInfo';
 import Editor from './Editor';
+import Overlay from './Overlay';
 
 class Player extends Component {
   state = {
     editorOpen: false,
+    overlayOpen: false,
   }
 
   openEditor = (items) => {
@@ -13,6 +15,7 @@ class Player extends Component {
 
     this.setState({
       editorOpen: true,
+      overlayOpen: true,
       editorItems: items,
     })
   }
@@ -20,15 +23,25 @@ class Player extends Component {
   closeEditor = () => {
     this.setState({
       editorOpen: false,
+      overlayOpen: false,
+    })
+  }
+
+  closeEverything = () => {
+    this.setState({
+      overlayOpen: false,
+      editorOpen: false,
     })
   }
 
   render() {
     const { user } = this.props;
-    const { editorOpen, editorItems } = this.state;
+    const { editorOpen, editorItems, overlayOpen } = this.state;
 
     return(
-      <div className="player">
+      <div
+        className="player"
+      >
         <PlayerInfo
           openEditor={this.openEditor}
           title={user.name}
@@ -50,6 +63,12 @@ class Player extends Component {
             {...this.props}
             closeEditor={this.closeEditor}
             items={editorItems}
+          />
+        )}
+
+        {overlayOpen && (
+          <Overlay
+            closeEverything={this.closeEverything}
           />
         )}
 

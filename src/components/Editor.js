@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 const windowWidth = window.innerWidth;
-const windowHeight = window.innerHeight;
+const windowHeight = (window.innerHeight * 0.9) - 50;
 
 class Editor extends Component {
   state = {
