@@ -4,13 +4,15 @@ import users from "./users"
 import user from "./user"
 import permissions from "./permissions"
 import sounds from "./sounds"
+import player from "./player"
 
 const rootReducer = combineReducers({
   sounds,
   permissions,
   messages,
   users,
-  user
+  user,
+  player,
 });
 
 export default rootReducer;

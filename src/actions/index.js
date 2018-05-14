@@ -16,13 +16,18 @@ export const addUser = name => ({
   name
 })
 
+export const changeEditingStatus = (isEditting, items) => ({
+  type: types.CHANGE_EDITTING_STATUS,
+  isEditting,
+  items,
+});
+
 export const updateUserAttempt = user => ({
   type: types.UPDATE_USER_ATTEMPT,
   user
-})
+});
 
 export const updateUserSuccess = user => {
-  console.log('SUCCESS')
   return {
     type: types.UPDATE_USER_SUCCESS,
     user

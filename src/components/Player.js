@@ -1,42 +1,40 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import withMenu from './withMenu';
 import PlayerInfo from './PlayerInfo';
 import Editor from './Editor';
-import Overlay from './Overlay';
 
 class Player extends Component {
-  state = {
-    editorOpen: false,
-    overlayOpen: false,
+
+  componentWillReceiveProps(newProps) {
+    const { dispatchEdittingStatus, isEditting } = this.props;
+
+    if(newProps.overlayOpen === false && isEditting) {
+      dispatchEdittingStatus(false, []);
+    }
   }
 
   openEditor = (items) => {
-    if(this.state.editorOpen) return;
+    const { dispatchEdittingStatus, openOverlay } = this.props;
 
-    this.setState({
-      editorOpen: true,
-      overlayOpen: true,
-      editorItems: items,
-    })
+    dispatchEdittingStatus(true, items);
+    openOverlay();
   }
 
   closeEditor = () => {
-    this.setState({
-      editorOpen: false,
-      overlayOpen: false,
-    })
-  }
+    const { dispatchEdittingStatus, closeOverlay } = this.props;
 
-  closeEverything = () => {
-    this.setState({
-      overlayOpen: false,
-      editorOpen: false,
-    })
+    dispatchEdittingStatus(false, []);
+    closeOverlay();
   }
 
   render() {
-    const { user } = this.props;
-    const { editorOpen, editorItems, overlayOpen } = this.state;
+    const {
+      user,
+      isEditting,
+      items,
+      dispatchEdittingStatus,
+    } = this.props;
 
     return(
       <div
@@ -58,17 +56,12 @@ class Player extends Component {
           listItems={user.expPoints}
         />
 
-        {editorOpen && (
+        {isEditting && (
           <Editor
-            {...this.props}
             closeEditor={this.closeEditor}
-            items={editorItems}
-          />
-        )}
-
-        {overlayOpen && (
-          <Overlay
-            closeEverything={this.closeEverything}
+            closeOverlay={this.props.closeOverlay}
+            items={items}
+            {...this.props}
           />
         )}
 
@@ -84,4 +77,4 @@ Player.propTypes = {
   })
 };
 
-export default Player;
+export default withMenu(Player);
