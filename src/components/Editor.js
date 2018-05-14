@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 
+const windowWidth = window.innerWidth;
+const windowHeight = window.innerHeight;
+
 class Editor extends Component {
   state = {
     name: '',
@@ -60,6 +63,12 @@ class Editor extends Component {
 
         newState.hitPoints = [newHpTotal.join('/')];
         break;
+      case 'exp':
+        let newExp = this.state.expPoints[0].split('/');
+        newExp[0] = value;
+
+        newState.expPoints = [newExp.join('/')];
+        break;
       default:
         newState[type] = value;
     }
@@ -77,12 +86,20 @@ class Editor extends Component {
     const { items } = this.props;
     const isTraits = items && items.length > 1;
     const isHitPoints = items[0].split('/').length > 1;
+    const isExp = !isTraits && !isHitPoints;
 
-    const { name, traits, hitPoints } = this.state;
-    const hpItems = hitPoints[0].split('/');
+    const { name, traits, hitPoints, expPoints } = this.state;
+    const hpItemsCurrent = hitPoints[0].split('/')[0];
+    const hpItemsTotal = hitPoints[0].split('/')[1];
 
     return (
-      <div className="info-editor-wrapper">
+      <div
+        className="info-editor-wrapper"
+        style={{
+          height: `${windowHeight}px`,
+          width: `${windowWidth}px`,
+        }}
+      >
         <div className="info-editor">
           <form onSubmit={this.submitUser}>
             {isTraits && (
@@ -102,16 +119,27 @@ class Editor extends Component {
               <span>
                 <label htmlFor="current-hp">Current</label>
                 {this.renderInput({
-                  value: hpItems[0],
+                  value: hpItemsCurrent,
                   'data-type': 'hp-current',
                 })}
                 <label htmlFor="total-hp">Total</label>
                 {this.renderInput({
-                  value: hpItems[1],
+                  value: hpItemsTotal,
                   'data-type': 'hp-total',
                 })}
               </span>
             )}
+
+            {isExp && (
+              <span>
+                <label htmlFor="exp">Exp</label>
+                {this.renderInput({
+                  value: expPoints[0],
+                  'data-type': 'exp',
+                })}
+              </span>
+            )}
+
             <input type="submit" value="SAVE" />
           </form>
         </div>

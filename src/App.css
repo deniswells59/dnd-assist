@@ -211,8 +211,6 @@ form input[type="submit"] {
   position: absolute;
   background-color: #fff;
   padding: 50px 20px;
-  height: 100%;
-  width: 100%;
 }
 
 .info-editor {
