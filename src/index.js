@@ -10,7 +10,6 @@ import registerServiceWorker from './registerServiceWorker'
 import reducers from './reducers'
 import rootSaga from './sagas';
 import setupSocket from './sockets';
-import username from './utils/name';
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -20,9 +19,9 @@ const store = createStore(
   applyMiddleware(sagaMiddleware),
 )
 
-const socket = setupSocket(store.dispatch, username);
+const socket = setupSocket(store.dispatch);
 
-sagaMiddleware.run(rootSaga, { socket, username });
+sagaMiddleware.run(rootSaga, { socket });
 
 ReactDOM.render(
   <Provider store={store}>
@@ -31,4 +30,4 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
-registerServiceWorker()
+registerServiceWorker();

@@ -79,7 +79,6 @@ class Editor extends Component {
   submitUser = (e) => {
     e.preventDefault();
     this.props.dispatchUpdateUser(this.state);
-    setTimeout(this.props.closeEditor, 600);
   }
 
   render() {

@@ -2,13 +2,13 @@ import * as types from '../constants/ActionTypes';
 import { addUser, messageReceived, populateUsersList, receivePermission, receiveSound } from '../actions';
 
 const setupSocket = (dispatch, username) => {
-  const socket = new WebSocket('ws://10.0.0.5:8989');
-  socket.onopen = () => {
-    socket.send(JSON.stringify({
-      type: types.ADD_USER,
-      name: username
-    }))
-  }
+  const socket = new WebSocket('ws://192.168.86.51:8989');
+  // socket.onopen = () => {
+  //   socket.send(JSON.stringify({
+  //     type: types.ADD_USER,
+  //     name: username
+  //   }))
+  // }
 
   socket.onmessage = (event) => {
     const data = JSON.parse(event.data);

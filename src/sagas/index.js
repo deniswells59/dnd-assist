@@ -9,11 +9,11 @@ const saveUserToLocalStorage = (user) => {
   window.localStorage.setItem('auth', JSON.stringify(user));
 };
 
-const getUserFromLocalStorage = () => window.localStorage.getItem('auth');
+const getUserFromLocalStorage = () => JSON.parse(window.localStorage.getItem('auth'));
 
 const handleNewMessage = function* handleNewMessage(params) {
   yield takeEvery(types.ADD_MESSAGE, (action) => {
-    action.author = params.username
+    action.author = getUserFromLocalStorage().name;
     params.socket.send(JSON.stringify(action));
   })
 }
@@ -44,7 +44,7 @@ const secondTimeUser = {
   tutorialComplete: true
 }
 
-const userLoginAttempt = function* userLoginAttempt(credentials) {
+const userLoginAttempt = function* userLoginAttempt(params) {
   yield takeLatest(types.ATTEMPT_USER_LOGIN, function* login(action) {
     try {
       let user = secondTimeUser;
@@ -81,7 +81,8 @@ const handleUserUpdate = function* userUpdate() {
 
       saveUserToLocalStorage(user);
 
-      yield put({ type:types.UPDATE_USER_SUCCESS, user });
+      yield put({ type: types.UPDATE_USER_SUCCESS, user });
+      yield put({ type: types.CHANGE_EDITTING_STATUS, isEditting: false, items: [] });
     } catch (e) {
       // TODO
     }

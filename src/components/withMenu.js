@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import Overlay from './Overlay';
+import Menu from './Menu';
 
 const withMenu = (WrappedComponent) => {
   return class extends Component {
     state = {
       overlayOpen: false,
+      menuOpen: false,
     }
 
     openOverlay = () => {
@@ -19,22 +21,43 @@ const withMenu = (WrappedComponent) => {
       });
     }
 
+    openMenu = () => {
+      this.setState({
+        menuOpen: true,
+        overlayOpen: true,
+      });
+    }
+
+    closeMenu = () => {
+      this.setState({
+        menuOpen: false,
+        overlayOpen: false,
+      });
+    }
+
     render() {
-      const { overlayOpen } = this.state;
+      const { overlayOpen, menuOpen } = this.state;
+      const { isEditting, dispatchEdittingStatus } = this.props;
+
       return (
         <div>
           <WrappedComponent
-            openOverlay={this.openOverlay}
-            closeOverlay={this.closeOverlay}
             overlayOpen={overlayOpen}
             {...this.props}
           />
 
-          {overlayOpen && (
+          {(isEditting || menuOpen) && (
             <Overlay
-              closeOverlay={this.closeOverlay}
+              blocked={this.isEditting}
+              dispatchEdittingStatus={dispatchEdittingStatus}
             />
           )}
+
+          <Menu
+            menuOpen={menuOpen}
+            openMenu={this.openMenu}
+            closeMenu={this.closeMenu}
+          />
 
         </div>
       )

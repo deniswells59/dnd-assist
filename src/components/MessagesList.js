@@ -2,17 +2,22 @@ import React from "react";
 import PropTypes from "prop-types";
 import Message from "./Message";
 
+import { AddMessage } from "../containers/AddMessage";
+
 const MessagesList = ({ messages }) => (
-  <section id="messages-list">
-    <ul>
-      {messages.map(message => (
-        <Message
-          key={message.id}
-          {...message}
-        />
-      ))}
-    </ul>
-  </section>
+  <div>
+    <section id="messages-list">
+      <ul>
+        {messages.map(message => (
+          <Message
+            key={message.id}
+            {...message}
+          />
+        ))}
+      </ul>
+    </section>
+    <AddMessage />
+  </div>
 )
 
 

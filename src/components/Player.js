@@ -6,26 +6,16 @@ import Editor from './Editor';
 
 class Player extends Component {
 
-  componentWillReceiveProps(newProps) {
-    const { dispatchEdittingStatus, isEditting } = this.props;
-
-    if(newProps.overlayOpen === false && isEditting) {
-      dispatchEdittingStatus(false, []);
-    }
-  }
-
   openEditor = (items) => {
-    const { dispatchEdittingStatus, openOverlay } = this.props;
+    const { dispatchEdittingStatus } = this.props;
 
     dispatchEdittingStatus(true, items);
-    openOverlay();
   }
 
   closeEditor = () => {
-    const { dispatchEdittingStatus, closeOverlay } = this.props;
+    const { dispatchEdittingStatus } = this.props;
 
     dispatchEdittingStatus(false, []);
-    closeOverlay();
   }
 
   render() {
@@ -33,7 +23,6 @@ class Player extends Component {
       user,
       isEditting,
       items,
-      dispatchEdittingStatus,
     } = this.props;
 
     return(
@@ -59,7 +48,6 @@ class Player extends Component {
         {isEditting && (
           <Editor
             closeEditor={this.closeEditor}
-            closeOverlay={this.props.closeOverlay}
             items={items}
             {...this.props}
           />
