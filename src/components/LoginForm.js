@@ -9,8 +9,8 @@ class LoginForm extends Component {
     e.preventDefault();
 
     this.props.dispatch({
-      user: this.user.value,
-      pass: this.pass.value,
+      username: this.user.value,
+      password: this.pass.value,
     });
   }
 

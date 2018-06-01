@@ -20,7 +20,7 @@ class AppComponent extends Component {
           <Route exact path='/' render={() => <Main user={user} />} />
           <Route exact path='/chat' render={() => <MessagesList />} />
           <Route path='/player' render={() => (
-            user && user.id ? (
+            user && user._id ? (
               <Player />
             ) : (
               <Redirect to='/' />

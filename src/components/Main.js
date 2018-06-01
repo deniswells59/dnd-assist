@@ -9,18 +9,22 @@ import LoginForm from './LoginForm';
 const Main = ({ user, dispatch, checkUser }) => (
   <div>
     {/* Changes this top route to <Start /> soon! */}
-    { user && user.id && user.tutorialComplete && <Redirect to='/player' /> }
-    { user && user.id && !user.tutorialComplete && <Redirect to='/player' /> }
-    { (!user || !user.id) &&
+    { user && user._id && user.tutorialComplete && <Redirect to='/player' /> }
+    { user && user._id && !user.tutorialComplete && <Redirect to='/player' /> }
+    { (!user || !user._id) &&
         <LoginForm checkUser={checkUser} dispatch={dispatch} /> }
   </div>
 );
 
 Main.propTypes = {
   user: PropTypes.shape({
-    id: PropTypes.string,
+    _id: PropTypes.string,
     tutorialComplete: PropTypes.bool.isRequired,
   })
+};
+
+Main.defaultProps = {
+  tutorialComplete: false,
 };
 
 export default Main;

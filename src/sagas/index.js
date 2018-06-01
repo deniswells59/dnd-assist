@@ -1,6 +1,6 @@
-import { takeEvery, takeLatest, put, all } from 'redux-saga/effects';
+import axios from 'axios';
+import { takeEvery, select, call, takeLatest, put, all } from 'redux-saga/effects';
 import { delay } from 'redux-saga';
-import { select } from 'redux-saga/effects';
 import * as types from '../constants/ActionTypes';
 
 const getUserFromStore = state => state.user;
@@ -44,12 +44,17 @@ const secondTimeUser = {
   tutorialComplete: true
 }
 
-const userLoginAttempt = function* userLoginAttempt(params) {
+const userLoginApi = data => {
+  return axios.post('http://localhost:3090/signin', data);
+}
+
+const userLoginAttempt = function* userLoginAttempt() {
   yield takeLatest(types.ATTEMPT_USER_LOGIN, function* login(action) {
     try {
-      let user = secondTimeUser;
-      yield delay(500); // API CALL GOES HERE :)
-
+      const { credentials } = action;
+      const response = yield call(userLoginApi, credentials);
+      const user = response.data;
+      
       saveUserToLocalStorage(user);
 
       yield put({ type: types.USER_LOGIN, user });
