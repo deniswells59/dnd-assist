@@ -8,7 +8,10 @@ const
   app = express(),
   router = require('./router'),
   mongoose = require('mongoose'),
-  cors = require('cors');
+  cors = require('cors')
+  socket = require('./websocket');
+
+socket.initSockets();
 
 // Database Setup
 mongoose.connect('mongodb://localhost:auth/dnd-assist');
