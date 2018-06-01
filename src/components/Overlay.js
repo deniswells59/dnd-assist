@@ -3,20 +3,17 @@ import React from 'react';
 const windowWidth = window.innerWidth;
 const windowHeight = window.innerHeight;
 
-const Overlay = ({ dispatchEdittingStatus, isEditting }) => (
+const Overlay = ({ closeEverything, isEditting }) => (
   <div
     className="overlay"
-    onClick={() => dispatchEdittingStatus(false, [])}
+    onClick={closeEverything}
     style={{
       backgroundColor: isEditting ? '#fff' : 'transparent',
       width: windowWidth,
       height: windowHeight,
     }}
   >
-    <div
-      className="-overlay"
-      onClick={() => dispatchEdittingStatus(false, [])}
-    />
+    <div className="-overlay" />
   </div>
 );
 

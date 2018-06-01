@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Message from "./Message";
+import withMenu from "./withMenu";
 
 import { AddMessage } from "../containers/AddMessage";
 
@@ -31,4 +32,4 @@ MessagesList.propTypes = {
   ).isRequired
 }
 
-export default MessagesList
+export default withMenu(MessagesList);

@@ -61,8 +61,7 @@ const userLoginAttempt = function* userLoginAttempt(params) {
 
 const handleUserCheck = function* checkUser() {
   yield takeEvery(types.CHECK_USER, function* login() {
-    const data = getUserFromLocalStorage();
-    const user = JSON.parse(data);
+    const user = getUserFromLocalStorage();
 
     yield put({ type: types.USER_LOGIN, user });
   })

@@ -35,6 +35,11 @@ const withMenu = (WrappedComponent) => {
       });
     }
 
+    closeEverything = () => {
+      this.closeMenu();
+      this.props.dispatchEdittingStatus(false, []);
+    }
+
     render() {
       const { overlayOpen, menuOpen } = this.state;
       const { isEditting, dispatchEdittingStatus } = this.props;
@@ -49,7 +54,7 @@ const withMenu = (WrappedComponent) => {
           {(isEditting || menuOpen) && (
             <Overlay
               blocked={this.isEditting}
-              dispatchEdittingStatus={dispatchEdittingStatus}
+              closeEverything={this.closeEverything}
             />
           )}
 
