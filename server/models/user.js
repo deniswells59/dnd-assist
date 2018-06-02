@@ -6,12 +6,12 @@ const
 // User Model
 const userSchema = new Schema({
   name: { type: String, unique: true, },
-  tutorialComplete: { type: String, unique: true, },
   tutorialComplete: { type: Boolean, default: false },
   traits: [{ type: String }],
   hitPoints: [{ type: String }],
   expPoints: [{ type: String }],
-  password: String
+  password: String,
+  role: { type: String, enums: ['user', 'admin'], default: 'user' }
 });
 
 // On Save Hook, encrypt password

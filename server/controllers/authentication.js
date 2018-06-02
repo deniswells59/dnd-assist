@@ -41,8 +41,7 @@ exports.signup = function(req, res, next) {
 
     // If a user with an name does not exist, create and save use record
     const user = new User({
-      name: name,
-      password: password,
+      ...req.body,
       traits: ['traits', 'about', 'you'],
       hitPoints: ['10/10'],
       expPoints: ['5000'],
@@ -53,8 +52,7 @@ exports.signup = function(req, res, next) {
       if (err) { return next(err); }
 
        // Respond to the request indicating the user was created
-      res.json(user);
+      res.send(user);
     });
   });
-
 }
