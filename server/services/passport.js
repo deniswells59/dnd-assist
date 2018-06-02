@@ -1,37 +1,30 @@
 const
   passport = require('passport'),
   User = require('../models/user'),
-  config = require('../config'),
   JwtStrategy = require('passport-jwt').Strategy,
   ExtractJwt = require('passport-jwt').ExtractJwt,
   LocalStrategy = require('passport-local');
 
 
 // Local Strategy
-const localOptions = { usernameField: 'email' }
-const localLogin = new LocalStrategy(localOptions, function(email, password, done) {
-  // Verify this username and password, call done with the user
-  // if it is the correct username and password
-  // otherwise, call done with false
-  User.findOne({ email: email }, function(err, user) {
+const localLogin = new LocalStrategy(function(name, password, done) {
+  User.findOne({ name: name }, function (err, user) {
     if (err) { return done(err); }
-
-    if (!user) { return done(null, false); }
-
-    // Compare passwords - is 'password' equal to user.password?
-    user.comparePassword(password, function (err, isMatch) {
-      if (err) { return done(err); }
-      if (!isMatch) { return done(null, false); }
-
-      return done(null, user);
-    });
-  })
-})
+    if (!user) {
+      return done(null, false, { message: 'Incorrect name.' });
+    }
+    user.comparePassword(password, (err, isMatch) => {
+      if(err) return done(err);
+      if(!isMatch) return done(null, false, { message: 'Incorrect password.' });
+      if(isMatch) return done(null, user);
+    })
+  });
+});
 
 // Setup options for JWT strategy
 const jwtOptions = {
-  jwtFromRequest: ExtractJwt.fromHeader('authorization'),
-  secretOrKey: config.secret
+  jwtFromRequest: req => req.query.auth,
+  secretOrKey: process.env.JWT_SECRET
 };
 
 // Create JWT Strategy

@@ -1,18 +1,20 @@
 const
   jwt = require('jwt-simple'),
-  User = require('../models/user'),
-  config = require('../config');
+  User = require('../models/user');
 
 // Generates a JWT token.
 function tokenForUser(user) {
   const timestamp = new Date().getTime();
-  return jwt.encode({ sub: user.id, iat: timestamp }, config.secret);
+  return jwt.encode({ sub: user.id, iat: timestamp }, process.env.JWT_SECRET);
 }
 
 exports.signin = function(req, res, next) {
   // User has already had their name and password authenticated
   // so they just need to be given a token.
-  res.send(req.user);
+  res.send({
+    ...req.user.toObject(),
+    jwt: tokenForUser(req.user),
+  });
 }
 
 // Signs the user up for the service

@@ -1,7 +1,8 @@
 import axios from 'axios';
 import { takeEvery, select, call, takeLatest, put, all } from 'redux-saga/effects';
-import { delay } from 'redux-saga';
 import * as types from '../constants/ActionTypes';
+
+const getAuthUrl = path => `http://localhost:3090/${path}?auth=${getJWTFromLocalStorage()}`;
 
 const getUserFromStore = state => state.user;
 
@@ -10,6 +11,7 @@ const saveUserToLocalStorage = (user) => {
 };
 
 const getUserFromLocalStorage = () => JSON.parse(window.localStorage.getItem('auth'));
+const getJWTFromLocalStorage = () => JSON.parse(window.localStorage.getItem('auth')).jwt;
 
 const handleNewMessage = function* handleNewMessage(params) {
   yield takeEvery(types.ADD_MESSAGE, (action) => {
@@ -30,22 +32,12 @@ const handleSoundPlay = function* handleSoundPlay(params) {
   })
 }
 
-const firstTimeUser = {
-  id: '123',
-  name: 'Skip Bo',
-  tutorialComplete: false,
-  traits: ['Human', 'Rogue', 'Chick Magnet'],
-  hitPoints: ['12/24'],
-  expPoints: ['3000'],
-};
-
-const secondTimeUser = {
-  ...firstTimeUser,
-  tutorialComplete: true
-}
-
 const userLoginApi = data => {
   return axios.post('http://localhost:3090/signin', data);
+}
+
+const userUpdateApi = data => {
+  return axios.post(getAuthUrl('update'), data);
 }
 
 const userLoginAttempt = function* userLoginAttempt() {
@@ -54,7 +46,7 @@ const userLoginAttempt = function* userLoginAttempt() {
       const { credentials } = action;
       const response = yield call(userLoginApi, credentials);
       const user = response.data;
-      
+
       saveUserToLocalStorage(user);
 
       yield put({ type: types.USER_LOGIN, user });
@@ -77,7 +69,7 @@ const handleUserUpdate = function* userUpdate() {
     try {
       const oldUser = yield select(getUserFromStore);
       const newUser = action.user;
-      yield delay(500); // API CALL GOES HERE :)
+      yield call(userUpdateApi, newUser);
       const user = {
         ...oldUser,
         ...newUser

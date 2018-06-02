@@ -42,7 +42,7 @@ const withMenu = (WrappedComponent) => {
 
     render() {
       const { overlayOpen, menuOpen } = this.state;
-      const { isEditting, dispatchEdittingStatus } = this.props;
+      const { isEditting } = this.props;
 
       return (
         <div>

@@ -1,26 +1,10 @@
 const
   Authentication = require('./controllers/authentication'),
+  UserController = require('./controllers/user'),
   passportService = require('./services/passport'),
   User = require('./models/user'),
   LocalStrategy = require('passport-local').Strategy,
   passport = require('passport');
-
-
-passport.use(new LocalStrategy(
-  function(name, password, done) {
-    User.findOne({ name: name }, function (err, user) {
-      if (err) { return done(err); }
-      if (!user) {
-        return done(null, false, { message: 'Incorrect name.' });
-      }
-      user.comparePassword(password, (err, isMatch) => {
-        if(err) return done(err);
-        if(!isMatch) return done(null, false, { message: 'Incorrect password.' });
-        if(isMatch) return done(null, user);
-      })
-    });
-  }
-));
 
 const
   requireAuth = passport.authenticate('jwt', { session: false }),
@@ -33,6 +17,7 @@ module.exports = function(app) {
     res.send({ message: 'Server authentication home route' })
   });
 
+  app.post('/update', requireAuth, UserController.update);
   app.post('/signin', requireSignIn, Authentication.signin);
   app.post('/signup', Authentication.signup);
 }

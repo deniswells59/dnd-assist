@@ -8,7 +8,7 @@ const
   app = express(),
   router = require('./router'),
   mongoose = require('mongoose'),
-  cors = require('cors')
+  cors = require('cors'),
   socket = require('./websocket');
 
 socket.initSockets();
@@ -16,10 +16,16 @@ socket.initSockets();
 // Database Setup
 mongoose.connect('mongodb://localhost:auth/dnd-assist');
 
+const corsOptions = {
+  origin: "http://localhost:3000",
+  optionsSuccessStatus: 200,
+}
+
 // App/Middleware Setup
 app.use(morgan('combined')); // Logging debugging
-app.use(cors()) // Handles CORS
+app.use(cors(corsOptions)) // Handles CORS
 app.use(bodyParser.json({ type: '*/*' })); // Parses incoming requests as JSON
+
 router(app);
 
 // Server Setup
