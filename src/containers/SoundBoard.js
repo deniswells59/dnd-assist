@@ -6,11 +6,12 @@ const mapDispatchToProps = dispatch => ({
   dispatchSound: (sound) => {
     dispatch(playSound(sound));
   },
-  dispatchSoundReset: (sound) => {
-    dispatch(resetSound(sound));
+  dispatchSoundReset: () => {
+    dispatch(resetSound());
   }
 });
 
 export const SoundBoard = connect(state => ({
-  sounds: state.sounds
+  sounds: state.sounds,
+  user: state.user,
 }), mapDispatchToProps)(SoundBoardComponent);

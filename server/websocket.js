@@ -54,16 +54,11 @@ const initSockets = () => {
           broadcast({
             type: 'RECEIVE_SOUND',
             sound: data.sound,
+            playerId: data.playerId,
           }, ws);
 
           break;
-        case 'PLAY_SOUND':
-          broadcast({
-            type: 'RECEIVE_SOUND',
-            sound: data.sound,
-          }, ws);
 
-         break;
         case 'CONNECT_TO_SOCKET':
           broadcast({
             type: 'PLAYER_CONNECTED',

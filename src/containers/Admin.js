@@ -1,7 +1,13 @@
 import { connect } from 'react-redux';
 import AdminComponent from '../components/Admin';
 
-const mapDispatchToProps = dispatch => ({});
+import { playSound } from '../actions';
+
+const mapDispatchToProps = dispatch => ({
+  dispatchSound: (sound, playerId) => {
+    dispatch(playSound(sound, playerId));
+  },
+});
 
 export const Admin = connect(state => ({
   user: state.user,

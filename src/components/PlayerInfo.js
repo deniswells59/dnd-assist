@@ -11,10 +11,18 @@ class PlayerInfo extends Component {
   }
 
   render() {
+    const { openEditor, listItems, title, cannotEdit } = this.props;
+
     return (
-      <div onClick={() => this.props.openEditor(this.props.listItems)} className="player-info">
+      <div
+        onClick={() => {
+          if(cannotEdit) return;
+          openEditor(listItems);
+        }}
+        className="player-info"
+      >
         <div className="player-info-title">
-          {this.props.title}
+          {title}
         </div>
         <ul className="player-info-list">
           {this.renderList()}

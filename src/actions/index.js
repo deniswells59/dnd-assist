@@ -56,19 +56,20 @@ export const receivePermission = permission => ({
   permission
 })
 
-export const playSound = sound => ({
+export const playSound = (sound, playerId) => ({
   type: types.PLAY_SOUND,
-  sound
+  sound,
+  playerId,
 })
 
-export const receiveSound = sound => ({
-  type: types.RECEIVE_SOUND,
-  sound
-})
+export const receiveSound = data => ({
+    type: types.RECEIVE_SOUND,
+    sound: data.sound,
+    playerId: data.playerId,
+});
 
-export const resetSound = sound => ({
-  type: types.RESET_SOUND,
-  sound
+export const resetSound = () => ({
+  type: types.RESET_SOUND
 })
 
 export const userLoginAttempt = credentials => ({

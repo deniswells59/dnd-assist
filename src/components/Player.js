@@ -31,6 +31,7 @@ class Player extends Component {
       user,
       isEditting,
       items,
+      cannotEdit,
     } = this.props;
 
     return(
@@ -38,16 +39,19 @@ class Player extends Component {
         className="player"
       >
         <PlayerInfo
+          cannotEdit={cannotEdit}
           openEditor={this.openEditor}
           title={user.name}
           listItems={user.traits}
         />
         <PlayerInfo
+          cannotEdit={cannotEdit}
           openEditor={this.openEditor}
           title="Hit Points"
           listItems={user.hitPoints}
         />
         <PlayerInfo
+          cannotEdit={cannotEdit}
           openEditor={this.openEditor}
           title="Exp Points"
           listItems={user.expPoints}

@@ -9,6 +9,7 @@ import { Admin } from "./containers/Admin";
 import { Main } from "./containers/Main";
 import { Player } from "./containers/Player";
 import { MessagesList } from "./containers/MessagesList";
+import { SoundBoard } from "./containers/SoundBoard";
 // import { ItemList } from "./containers/ItemList";
 
 class AppComponent extends Component {
@@ -18,6 +19,7 @@ class AppComponent extends Component {
 
     return (
       <div className="main">
+        <SoundBoard />
         <Route exact path='/' render={() => <Main user={user} />} />
         <Route exact path='/chat' render={() => <MessagesList />} />
         <Route path='/player' render={() => (

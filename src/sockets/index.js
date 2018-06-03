@@ -12,7 +12,7 @@ const setupSocket = dispatch => {
 
   socket.onmessage = (event) => {
     const data = JSON.parse(event.data);
-    console.log('RECEIVED: ', data);
+    console.log('RECEIVED FROM SOCKET: ', data);
 
     switch (data.type) {
       case types.ADD_MESSAGE:
@@ -28,7 +28,7 @@ const setupSocket = dispatch => {
         dispatch(actions.receivePermission(data.permission));
         break;
       case types.RECEIVE_SOUND:
-        dispatch(actions.receiveSound(data.sound));
+        dispatch(actions.receiveSound(data));
         break;
       case types.PLAYER_CONNECTED:
         dispatch(actions.playerConnected(data.user));
