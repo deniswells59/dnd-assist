@@ -13,7 +13,6 @@ const initSockets = () => {
   }
 
   wss.on('connection', (ws) => {
-    let index;
 
     ws.on('message', (message) => {
       const data = JSON.parse(message);
@@ -21,8 +20,7 @@ const initSockets = () => {
       switch(data.type) {
 
         case 'ADD_USER': {
-          index = users.length;
-          users.push({ name: data.name, id: index + 1 })
+          users.push({ name: data.name })
 
           ws.send(JSON.stringify({
             type: 'USERS_LIST',
@@ -37,36 +35,46 @@ const initSockets = () => {
         }
 
         case 'ADD_MESSAGE':
-        broadcast({
-          type: 'ADD_MESSAGE',
-          message: data.message,
-          author: data.author,
-        }, ws);
+          broadcast({
+            type: 'ADD_MESSAGE',
+            message: data.message,
+            author: data.author,
+          }, ws);
 
-        break;
+          break;
         case 'UNLOCK_PERMISSION':
-        broadcast({
-          type: 'RECEIVE_PERMISSION',
-          permission: data.permission,
-        }, ws);
+          broadcast({
+            type: 'RECEIVE_PERMISSION',
+            permission: data.permission,
+          }, ws);
 
-        break;
+          break;
 
         case 'PLAY_SOUND':
-        broadcast({
-          type: 'RECEIVE_SOUND',
-          sound: data.sound,
-        }, ws);
+          broadcast({
+            type: 'RECEIVE_SOUND',
+            sound: data.sound,
+          }, ws);
 
-        break;
+          break;
+        case 'PLAY_SOUND':
+          broadcast({
+            type: 'RECEIVE_SOUND',
+            sound: data.sound,
+          }, ws);
+
+         break;
+        case 'CONNECT_TO_SOCKET':
+          broadcast({
+            type: 'PLAYER_CONNECTED',
+            user: data.user,
+          }, ws);
         default:
-        break;
+          break;
       }
     })
 
     ws.on('close', () => {
-      users.splice(index, 1);
-
       broadcast({
         type: 'USERS_LIST',
         users

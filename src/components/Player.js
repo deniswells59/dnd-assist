@@ -6,6 +6,15 @@ import Editor from './Editor';
 
 class Player extends Component {
 
+  componentWillReceiveProps(newProps) {
+    const { user, dispatchConnectToSocket } = this.props;
+    const { socket } = newProps;
+
+    if(socket.open && !socket.connected) {
+      dispatchConnectToSocket(user);
+    }
+  }
+
   openEditor = (items) => {
     const { dispatchEdittingStatus } = this.props;
 

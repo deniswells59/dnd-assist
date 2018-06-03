@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import PlayerComponent from '../components/Player';
-import { updateUserAttempt, changeEditingStatus } from '../actions';
+import { updateUserAttempt, changeEditingStatus, connectToSocket } from '../actions';
 
 const mapDispatchToProps = dispatch => ({
   dispatchUpdateUser: (user) => {
@@ -8,6 +8,9 @@ const mapDispatchToProps = dispatch => ({
   },
   dispatchEdittingStatus: (status, items) => {
     dispatch(changeEditingStatus(status, items));
+  },
+  dispatchConnectToSocket: (user) => {
+    dispatch(connectToSocket(user));
   }
 });
 
@@ -15,5 +18,6 @@ export const Player = connect(state => {
   return {
     user: state.user,
     ...state.player,
+    socket: state.socket,
   }
 }, mapDispatchToProps)(PlayerComponent);

@@ -31,15 +31,11 @@ class AppComponent extends Component {
     )
   }
 
-  renderAdmin = () => {
-    const { user } = this.props;
-
-    return (
-      <div className="main">
-        <Route exact path='/' render={() => <Admin />} />
-      </div>
-    )
-  }
+  renderAdmin = () => (
+    <div className="main">
+      <Route exact path='/' render={() => <Admin />} />
+    </div>
+  )
 
   render() {
     const { user } = this.props;

@@ -1,4 +1,6 @@
 import { combineReducers } from "redux"
+import admin from "./admin"
+import socket from "./socket"
 import messages from "./messages"
 import users from "./users"
 import user from "./user"
@@ -13,6 +15,8 @@ const rootReducer = combineReducers({
   users,
   user,
   player,
+  admin,
+  socket,
 });
 
 export default rootReducer;

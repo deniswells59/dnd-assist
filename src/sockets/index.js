@@ -1,33 +1,37 @@
 import * as types from '../constants/ActionTypes';
-import { addUser, messageReceived, populateUsersList, receivePermission, receiveSound } from '../actions';
+import * as actions from '../actions';
 
-const setupSocket = (dispatch, username) => {
-  const socket = new WebSocket('ws://192.168.86.51:8989');
-  // socket.onopen = () => {
-  //   socket.send(JSON.stringify({
-  //     type: types.ADD_USER,
-  //     name: username
-  //   }))
-  // }
+const address = '192.168.86.70:8989';
+
+const setupSocket = dispatch => {
+  const socket = new WebSocket(`ws://${address}`);
+  socket.onopen = () => {
+    console.log(`Connected to socket at ${address}`)
+    dispatch(actions.socketOpened())
+  }
 
   socket.onmessage = (event) => {
     const data = JSON.parse(event.data);
+    console.log('RECEIVED: ', data);
 
     switch (data.type) {
       case types.ADD_MESSAGE:
-        dispatch(messageReceived(data.message, data.author));
+        dispatch(actions.messageReceived(data.message, data.author));
         break;
       case types.ADD_USER:
-        dispatch(addUser(data.name));
+        dispatch(actions.addUser(data.name));
         break;
       case types.USERS_LIST:
-        dispatch(populateUsersList(data.users));
+        dispatch(actions.populateUsersList(data.users));
         break;
       case types.RECEIVE_PERMISSION:
-        dispatch(receivePermission(data.permission));
+        dispatch(actions.receivePermission(data.permission));
         break;
       case types.RECEIVE_SOUND:
-        dispatch(receiveSound(data.sound));
+        dispatch(actions.receiveSound(data.sound));
+        break;
+      case types.PLAYER_CONNECTED:
+        dispatch(actions.playerConnected(data.user));
         break;
       default:
         break;

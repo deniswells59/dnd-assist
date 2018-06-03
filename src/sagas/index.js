@@ -2,7 +2,8 @@ import axios from 'axios';
 import { takeEvery, select, call, takeLatest, put, all } from 'redux-saga/effects';
 import * as types from '../constants/ActionTypes';
 
-const getAuthUrl = path => `http://localhost:3090/${path}?auth=${getJWTFromLocalStorage()}`;
+const getUrl = path => `http://192.168.86.70:3090/${path}`;
+const getAuthUrl = path => `${getUrl(path)}?auth=${getJWTFromLocalStorage()}`;
 
 const getUserFromStore = state => state.user;
 
@@ -20,6 +21,12 @@ const handleNewMessage = function* handleNewMessage(params) {
   })
 }
 
+const handlePlayerConnect = function* handlePlayerConnect(params) {
+  yield takeEvery(types.CONNECT_TO_SOCKET, (action) => {
+    params.socket.send(JSON.stringify(action));
+  })
+}
+
 const handleUnlockPermissions = function* handleUnlockPermissions(params) {
   yield takeEvery(types.UNLOCK_PERMISSION, (action) => {
     params.socket.send(JSON.stringify(action));
@@ -33,7 +40,7 @@ const handleSoundPlay = function* handleSoundPlay(params) {
 }
 
 const userLoginApi = data => {
-  return axios.post('http://localhost:3090/signin', data);
+  return axios.post(getUrl('signin'), data);
 }
 
 const userUpdateApi = data => {
@@ -90,6 +97,7 @@ export default function* rootSaga(params) {
     handleSoundPlay(params),
     handleNewMessage(params),
     handleUnlockPermissions(params),
+    handlePlayerConnect(params),
     userLoginAttempt(),
     handleUserCheck(),
     handleUserUpdate(),

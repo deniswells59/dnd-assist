@@ -79,3 +79,17 @@ export const userLoginAttempt = credentials => ({
 export const checkUser = () => ({
   type: types.CHECK_USER
 })
+
+export const socketOpened = () => ({
+  type: types.SOCKET_OPEN,
+});
+
+export const connectToSocket = user => ({
+  type: types.CONNECT_TO_SOCKET,
+  user
+});
+
+export const playerConnected = user => ({
+  type: types.PLAYER_CONNECTED,
+  user
+});
