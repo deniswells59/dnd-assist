@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import withMenu from './withMenu';
 import PlayerInfo from './PlayerInfo';
 import Editor from './Editor';
 
@@ -10,7 +9,7 @@ class Player extends Component {
     const { user, dispatchConnectToSocket } = this.props;
     const { socket } = newProps;
 
-    if(socket.open && !socket.connected) {
+    if(socket && socket.open && !socket.connected) {
       dispatchConnectToSocket(user);
     }
   }
@@ -74,4 +73,4 @@ Player.propTypes = {
   })
 };
 
-export default withMenu(Player);
+export default Player;

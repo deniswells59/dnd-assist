@@ -11,8 +11,6 @@ const admin = (state = initialState, action) => {
         if(player._id !== action.user._id) return true;
       });
 
-      console.log('NEWLIST', newList);
-
       return {
         ...state,
         playerList: [

@@ -22,7 +22,7 @@ class AppComponent extends Component {
         <Route exact path='/chat' render={() => <MessagesList />} />
         <Route path='/player' render={() => (
           user && user._id ? (
-            <Player />
+            <Player withMenu />
           ) : (
             <Redirect to='/' />
           )

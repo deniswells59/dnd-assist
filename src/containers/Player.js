@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import PlayerComponent from '../components/Player';
+import withMenu from '../components/withMenu';
 import { updateUserAttempt, changeEditingStatus, connectToSocket } from '../actions';
 
 const mapDispatchToProps = dispatch => ({
@@ -20,4 +21,4 @@ export const Player = connect(state => {
     ...state.player,
     socket: state.socket,
   }
-}, mapDispatchToProps)(PlayerComponent);
+}, mapDispatchToProps)(withMenu(PlayerComponent));
