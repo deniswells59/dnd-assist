@@ -26,9 +26,9 @@ class ToolList extends Component {
       <div className="tool-list">
         {permissionList.map((p, i) => (
           <div
+            key={i}
             className="tool-wrapper">
             <Link
-              key={i}
               to={permissions[p] ? '/map' : ''}
             >
               {permissions[p] ? <p>{p}</p> : <p>????????</p>}

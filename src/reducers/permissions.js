@@ -12,7 +12,7 @@ const permissions = (state = initialState, action) => {
     case types.UNLOCK_PERMISSION:
       return {
         ...state,
-        [action.permission]: true,
+        [action.permission]: !state[action.permission],
       }
     default:
       return state;

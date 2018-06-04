@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Player from './Player';
 import { SoundBoard } from '../containers/SoundBoard';
+import { Permissions } from '../containers/Permissions';
 
 
 const Admin = ({ user, admin, dispatchSound }) => (
@@ -24,6 +25,7 @@ const Admin = ({ user, admin, dispatchSound }) => (
       ))}
 
       <SoundBoard />
+      <Permissions />
     </div>
   </div>
 );

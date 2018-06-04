@@ -4,26 +4,21 @@ import PropTypes from 'prop-types';
 const Permissions = ({ permissions, dispatch }) => (
   <div id="permissions">
     {Object.keys(permissions).map(key => (
-      <p
-        key={key}>
-        {key}:
-        {permissions[key] ?
-        <img width='250px' height='auto' src='/map.png' alt=""/> :
-        `${permissions[key]}`
-      }
       <button
+        key={key}
         onClick={() => {
           dispatch(key);
         }}
-        >Show Map</button>
-    </p>
-  ))}
+      >{key}</button>
+    ))}
   </div>
 );
 
 Permissions.propTypes = {
   permissions: PropTypes.shape({
     map: PropTypes.bool.isRequired,
+    pictureBook: PropTypes.bool.isRequired,
+    translator: PropTypes.bool.isRequired,
   }),
 };
 
