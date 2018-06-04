@@ -10,7 +10,9 @@ import { Main } from "./containers/Main";
 import { Player } from "./containers/Player";
 import { MessagesList } from "./containers/MessagesList";
 import { SoundBoard } from "./containers/SoundBoard";
-// import { ItemList } from "./containers/ItemList";
+import { ToolList } from "./containers/ToolList";
+
+import Map from "./components/Map";
 
 class AppComponent extends Component {
 
@@ -22,6 +24,8 @@ class AppComponent extends Component {
         <SoundBoard />
         <Route exact path='/' render={() => <Main user={user} />} />
         <Route exact path='/chat' render={() => <MessagesList />} />
+        <Route exact path='/tools' render={() => <ToolList />} />
+        <Route exact path='/map' render={() => <Map />} />
         <Route path='/player' render={() => (
           user && user._id ? (
             <Player withMenu />

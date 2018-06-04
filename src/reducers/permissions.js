@@ -1,12 +1,15 @@
+import * as types from '../constants/ActionTypes';
+
 const initialState = {
-  map: false,
+  map: true,
+  pictureBook: false,
+  translator: false,
 };
 
 const permissions = (state = initialState, action) => {
   switch (action.type) {
-    case 'RECEIVE_PERMISSION':
-    case 'UNLOCK_PERMISSION':
-      console.log('UNLOCK REDUCER!');
+    case types.RECEIVE_PERMISSION:
+    case types.UNLOCK_PERMISSION:
       return {
         ...state,
         [action.permission]: true,

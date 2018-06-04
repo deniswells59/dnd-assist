@@ -5,7 +5,7 @@ const Menu = ({ openMenu, closeMenu, menuOpen }) => (
   <div className="menu">
     {menuOpen && (
       <div>
-      <Link to="/player">
+      <Link to="/tools">
         <img
           className="menu-img sub item-icon"
           src="/items_icon.png"

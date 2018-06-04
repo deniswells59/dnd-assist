@@ -3,8 +3,10 @@ import PropTypes from 'prop-types';
 
 class SoundBoard extends Component {
   componentWillReceiveProps(newProps) {
+    if(!this.props.user) return;
+
     const { sounds } =  newProps;
-    const { role, _id } = newProps;
+    const { role, _id } = this.props.user;
 
     if (role === 'admin') return;
     Object.keys(sounds).forEach(key => {
