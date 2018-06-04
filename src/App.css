@@ -268,7 +268,7 @@ div.-overlay {
 .menu-img.chat-icon {
   bottom: 173px;
 }
-@media (min-width: 1400px) {
+@media (min-width: 1000px) {
   .player-info-single {
     font-size: 0.6rem;
   }

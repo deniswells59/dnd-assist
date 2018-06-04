@@ -64,6 +64,12 @@ const initSockets = () => {
             type: 'PLAYER_CONNECTED',
             user: data.user,
           }, ws);
+
+        case 'UPDATE_USER_SUCCESS,':
+          broadcast({
+            type: 'PLAYER_UPDATED',
+            user: data.user,
+          }, ws);
         default:
           break;
       }

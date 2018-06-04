@@ -6,9 +6,11 @@ const initialState = {
 
 const admin = (state = initialState, action) => {
   switch (action.type) {
+    case types.PLAYER_UPDATED:
     case types.PLAYER_CONNECTED:
       const newList = state.playerList.filter(player => {
         if(player._id !== action.user._id) return true;
+        return false;
       });
 
       return {
@@ -23,4 +25,4 @@ const admin = (state = initialState, action) => {
   }
 }
 
-export default admin
+export default admin;

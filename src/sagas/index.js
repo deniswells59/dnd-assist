@@ -39,6 +39,12 @@ const handleSoundPlay = function* handleSoundPlay(params) {
   })
 }
 
+const handlePlayerUpdate= function* handleSoundPlay(params) {
+  yield takeEvery(types.UPDATE_USER_SUCCESS, (action) => {
+    params.socket.send(JSON.stringify(action));
+  })
+}
+
 const userLoginApi = data => {
   return axios.post(getUrl('signin'), data);
 }
@@ -98,6 +104,7 @@ export default function* rootSaga(params) {
     handleNewMessage(params),
     handleUnlockPermissions(params),
     handlePlayerConnect(params),
+    handlePlayerUpdate(params),
     userLoginAttempt(),
     handleUserCheck(),
     handleUserUpdate(),

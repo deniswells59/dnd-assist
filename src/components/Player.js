@@ -6,7 +6,7 @@ import Editor from './Editor';
 class Player extends Component {
 
   componentWillReceiveProps(newProps) {
-    const { user, dispatchConnectToSocket } = this.props;
+    const { user, dispatchConnectToSocket } = newProps;
     const { socket } = newProps;
 
     if(socket && socket.open && !socket.connected) {

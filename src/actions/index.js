@@ -94,3 +94,8 @@ export const playerConnected = user => ({
   type: types.PLAYER_CONNECTED,
   user
 });
+
+export const playerUpdated = user => ({
+  type: types.PLAYER_UPDATED,
+  user
+});

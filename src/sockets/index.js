@@ -33,6 +33,9 @@ const setupSocket = dispatch => {
       case types.PLAYER_CONNECTED:
         dispatch(actions.playerConnected(data.user));
         break;
+      case types.PLAYER_UPDATED:
+        dispatch(actions.playerUpdated(data.user));
+        break;
       default:
         break;
     }
