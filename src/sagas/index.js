@@ -2,21 +2,16 @@ import axios from 'axios';
 import { takeEvery, select, call, takeLatest, put, all } from 'redux-saga/effects';
 import * as types from '../constants/ActionTypes';
 
-const getUrl = path => `http://192.168.86.70:3090/${path}`;
-const getAuthUrl = path => `${getUrl(path)}?auth=${getJWTFromLocalStorage()}`;
+import storage from '../storage';
+
+const getUrl = path => `http://192.168.86.77:3090/${path}`;
+const getAuthUrl = path => `${getUrl(path)}?auth=${storage.user.getJWT()}`;
 
 const getUserFromStore = state => state.user;
 
-const saveUserToLocalStorage = (user) => {
-  window.localStorage.setItem('auth', JSON.stringify(user));
-};
-
-const getUserFromLocalStorage = () => JSON.parse(window.localStorage.getItem('auth'));
-const getJWTFromLocalStorage = () => JSON.parse(window.localStorage.getItem('auth')).jwt;
-
 const handleNewMessage = function* handleNewMessage(params) {
   yield takeEvery(types.ADD_MESSAGE, (action) => {
-    action.author = getUserFromLocalStorage().name;
+    action.author = storage.user.get().name;
     params.socket.send(JSON.stringify(action));
   })
 }
@@ -29,6 +24,7 @@ const handlePlayerConnect = function* handlePlayerConnect(params) {
 
 const handleUnlockPermissions = function* handleUnlockPermissions(params) {
   yield takeEvery(types.UNLOCK_PERMISSION, (action) => {
+    storage.permissions.save(action.permission);
     params.socket.send(JSON.stringify(action));
   })
 }
@@ -60,7 +56,7 @@ const userLoginAttempt = function* userLoginAttempt() {
       const response = yield call(userLoginApi, credentials);
       const user = response.data;
 
-      saveUserToLocalStorage(user);
+      storage.user.save(user);
 
       yield put({ type: types.USER_LOGIN, user });
     } catch (e) {
@@ -71,7 +67,7 @@ const userLoginAttempt = function* userLoginAttempt() {
 
 const handleUserCheck = function* checkUser() {
   yield takeEvery(types.CHECK_USER, function* login() {
-    const user = getUserFromLocalStorage();
+    const user = storage.user.get();
 
     yield put({ type: types.USER_LOGIN, user });
   })
@@ -88,7 +84,7 @@ const handleUserUpdate = function* userUpdate() {
         ...newUser
       };
 
-      saveUserToLocalStorage(user);
+      storage.user.save(user);
 
       yield put({ type: types.UPDATE_USER_SUCCESS, user });
       yield put({ type: types.CHANGE_EDITTING_STATUS, isEditting: false, items: [] });

@@ -1,11 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Dropdown from './Dropdown';
 
 const Permissions = ({ permissions, dispatch }) => (
-  <div id="permissions">
+  <div>
     {Object.keys(permissions).map(key => (
       <button
         key={key}
+        style={{
+          backgroundColor: permissions[key] ? 'green' : 'red',
+        }}
         onClick={() => {
           dispatch(key);
         }}
@@ -22,4 +26,4 @@ Permissions.propTypes = {
   }),
 };
 
-export default Permissions;
+export default Dropdown(Permissions);

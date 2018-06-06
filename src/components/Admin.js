@@ -24,8 +24,14 @@ const Admin = ({ user, admin, dispatchSound }) => (
         </div>
       ))}
 
-      <SoundBoard />
-      <Permissions />
+      <SoundBoard
+        cssId="soundboard"
+        name="Sounds"
+      />
+      <Permissions
+        cssId="permissions"
+        name="Permissions"
+      />
     </div>
   </div>
 );

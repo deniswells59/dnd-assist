@@ -63,9 +63,9 @@ export const playSound = (sound, playerId) => ({
 })
 
 export const receiveSound = data => ({
-    type: types.RECEIVE_SOUND,
-    sound: data.sound,
-    playerId: data.playerId,
+  type: types.RECEIVE_SOUND,
+  sound: data.sound,
+  playerId: data.playerId,
 });
 
 export const resetSound = () => ({

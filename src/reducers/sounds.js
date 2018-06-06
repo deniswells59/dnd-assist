@@ -29,9 +29,11 @@ const sounds = (state = initialState, action) => {
           playerId: action.playerId || null,
           playing: true,
         },
-      }
+      };
     case types.RESET_SOUND:
-      return initialState;
+      return {
+        ...initialState,
+      };
     default:
       return state;
   }

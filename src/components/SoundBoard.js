@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Dropdown from './Dropdown';
 
 class SoundBoard extends Component {
   componentWillReceiveProps(newProps) {
@@ -15,7 +16,7 @@ class SoundBoard extends Component {
         if (sound.playerId && _id !== sound.playerId) return;
         this.player.src = sound.src;
         this.player.play()
-          .catch(e => console.log(e));
+          .catch(e => console.log('error playing:', e));
       }
     });
   }
@@ -24,7 +25,7 @@ class SoundBoard extends Component {
     const { dispatchSound, dispatchSoundReset } = this.props;
 
     return (
-      <div id="soundboard">
+      <div>
         <audio
           onEnded={() => dispatchSoundReset()}
           ref={(ref) => {
@@ -32,15 +33,15 @@ class SoundBoard extends Component {
           }}></audio>
         <button
           onClick={() => {
-            dispatchSound('twinkle')
-          }}
-          >Twinkle
-        </button>
-        <button
-          onClick={() => {
             dispatchSound('secret')
           }}
           >Secret
+        </button>
+        <button
+          onClick={() => {
+            dispatchSound('twinkle')
+          }}
+          >Twinkle
         </button>
       </div>
     )
@@ -55,4 +56,4 @@ SoundBoard.propTypes = {
   }),
 };
 
-export default SoundBoard;
+export default Dropdown(SoundBoard);

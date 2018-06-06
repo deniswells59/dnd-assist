@@ -1,7 +1,8 @@
 import * as types from '../constants/ActionTypes';
 import * as actions from '../actions';
+import storage from '../storage';
 
-const address = '192.168.86.70:8989';
+const address = '192.168.86.77:8989';
 
 const setupSocket = dispatch => {
   const socket = new WebSocket(`ws://${address}`);
@@ -25,6 +26,7 @@ const setupSocket = dispatch => {
         dispatch(actions.populateUsersList(data.users));
         break;
       case types.RECEIVE_PERMISSION:
+        storage.permissions.save(data.permission);
         dispatch(actions.receivePermission(data.permission));
         break;
       case types.RECEIVE_SOUND:
