@@ -16,6 +16,16 @@ import Map from "./components/Map";
 
 class AppComponent extends Component {
 
+  componentWillReceiveProps(newProps) {
+    const oldTutorialComplete = this.props.user.tutorialComplete;
+    const newTutorialComplete = this.props.user.newTutorialComplete;
+
+    console.log('here');
+    if(!oldTutorialComplete && newTutorialComplete) {
+      console.log(this.context);
+    }
+  }
+
   renderUser = () => {
     const { user } = this.props;
 

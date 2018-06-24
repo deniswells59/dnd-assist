@@ -58,6 +58,14 @@ export const receivePermission = (permission, isAvailable) => ({
   isAvailable,
 })
 
+export const unlockTutorial = () => ({
+  type: types.UNLOCK_TUTORIAL_COMPLETE,
+})
+
+export const tutorialComplete = () => ({
+  type: types.RECEIVE_TUTORIAL_COMPLETE,
+})
+
 export const playSound = (sound, playerId) => ({
   type: types.PLAY_SOUND,
   sound,

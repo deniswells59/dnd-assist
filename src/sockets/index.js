@@ -38,6 +38,9 @@ const setupSocket = dispatch => {
       case types.PLAYER_UPDATED:
         dispatch(actions.playerUpdated(data.user));
         break;
+      case types.RECEIVE_TUTORIAL_COMPLETE:
+        dispatch(actions.tutorialComplete());
+        break;
       default:
         break;
     }

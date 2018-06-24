@@ -17,7 +17,6 @@ const permissions = (state = initialState, action) => {
       }
     case types.RECEIVE_PERMISSION:
     case types.UNLOCK_PERMISSION:
-    console.log(action);
       return {
         ...state,
         [action.permission]: action.isAvailable,

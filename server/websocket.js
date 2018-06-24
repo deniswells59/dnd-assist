@@ -65,12 +65,19 @@ const initSockets = () => {
             type: 'PLAYER_CONNECTED',
             user: data.user,
           }, ws);
-
-        case 'UPDATE_USER_SUCCESS,':
+          break;
+        case 'UPDATE_USER_SUCCESS':
           broadcast({
             type: 'PLAYER_UPDATED',
             user: data.user,
           }, ws);
+          break;
+
+        case 'UNLOCK_TUTORIAL_COMPLETE':
+          broadcast({
+            type: 'RECEIVE_TUTORIAL_COMPLETE',
+          });
+          break;
         default:
           break;
       }

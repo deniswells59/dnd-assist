@@ -29,6 +29,12 @@ const handleUnlockPermissions = function* handleUnlockPermissions(params) {
   })
 }
 
+const handleUnlockTutorial = function* handleUnlockTutorial(params) {
+  yield takeEvery(types.UNLOCK_TUTORIAL_COMPLETE, (action) => {
+    params.socket.send(JSON.stringify(action));
+  })
+}
+
 const handleSoundPlay = function* handleSoundPlay(params) {
   yield takeEvery(types.PLAY_SOUND, (action) => {
     params.socket.send(JSON.stringify(action));
@@ -94,6 +100,26 @@ const handleUserUpdate = function* userUpdate() {
   })
 }
 
+const handleReceiveTutorial = function* receiveTutorial() {
+  yield takeEvery(types.RECEIVE_TUTORIAL_COMPLETE, function* unlockTutorial() {
+    try {
+      const oldUser = yield select(getUserFromStore);
+
+      const newUser = {
+        ...oldUser,
+        tutorialComplete: true,
+      }
+
+      yield call(userUpdateApi, newUser);
+      storage.user.save(newUser);
+
+
+    } catch(e) {
+      // TODO
+    }
+  })
+}
+
 export default function* rootSaga(params) {
   yield all([
     handleSoundPlay(params),
@@ -101,8 +127,10 @@ export default function* rootSaga(params) {
     handleUnlockPermissions(params),
     handlePlayerConnect(params),
     handlePlayerUpdate(params),
+    handleUnlockTutorial(params),
     userLoginAttempt(),
     handleUserCheck(),
     handleUserUpdate(),
+    handleReceiveTutorial(),
   ])
 };
