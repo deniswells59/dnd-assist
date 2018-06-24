@@ -231,6 +231,10 @@ form input[type="submit"] {
   padding-bottom: 10px;
 }
 
+.red {
+  color: rgb(223, 56, 56);
+}
+
 .info-editor-wrapper {
   top: 0;
   left: 0;

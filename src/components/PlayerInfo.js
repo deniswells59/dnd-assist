@@ -11,7 +11,7 @@ class PlayerInfo extends Component {
   }
 
   render() {
-    const { openEditor, listItems, title, cannotEdit } = this.props;
+    const { openEditor, listItems, title, cannotEdit, customRender } = this.props;
 
     return (
       <div
@@ -25,7 +25,7 @@ class PlayerInfo extends Component {
           {title}
         </div>
         <ul className="player-info-list">
-          {this.renderList()}
+          {customRender ? customRender() : this.renderList()}
         </ul>
       </div>
     )
