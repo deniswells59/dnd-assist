@@ -46,6 +46,7 @@ const initSockets = () => {
           broadcast({
             type: 'RECEIVE_PERMISSION',
             permission: data.permission,
+            isAvailable: data.isAvailable,
           }, ws);
 
           break;
