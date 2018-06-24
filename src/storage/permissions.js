@@ -1,10 +1,10 @@
 const getPermissionsFromLocalStorage = () => JSON.parse(window.localStorage.getItem('permissions')) || {};
 
-const savePermissionToLocalStorage = (changedPermission) => {
+const savePermissionToLocalStorage = (changedPermission, isAvailable) => {
   const current = getPermissionsFromLocalStorage();
   const newPermissions =  {
     ...current,
-    [changedPermission]: !current[changedPermission],
+    [changedPermission]: isAvailable,
   };
 
   window.localStorage.setItem('permissions', JSON.stringify(newPermissions));

@@ -15,11 +15,11 @@ const Dropdown = (WrappedComponent) => {
     }
 
     render() {
-      const { cssId, name, hideDropdown } = this.props;
+      const { cssId, name, hideDropdown, customStyle } = this.props;
       const { open } = this.state;
 
       return (
-        <div id={cssId || 'dropdown'}>
+        <div style={customStyle} id={cssId || 'dropdown'}>
           {open || hideDropdown ? (
             <div className="relative">
               <WrappedComponent

@@ -46,14 +46,16 @@ export const populateUsersList = users => ({
   users
 })
 
-export const unlockPermission = permission => ({
+export const unlockPermission = (permission, isAvailable) => ({
   type: types.UNLOCK_PERMISSION,
-  permission
+  permission,
+  isAvailable,
 })
 
-export const receivePermission = permission => ({
+export const receivePermission = (permission, isAvailable) => ({
   type: types.RECEIVE_PERMISSION,
-  permission
+  permission,
+  isAvailable,
 })
 
 export const playSound = (sound, playerId) => ({

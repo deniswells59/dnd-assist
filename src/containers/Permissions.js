@@ -3,8 +3,8 @@ import PermissionsComponent from '../components/Permissions'
 import { unlockPermission } from '../actions'
 
 const mapDispatchToProps = dispatch => ({
-  dispatch: (permission) => {
-    dispatch(unlockPermission(permission))
+  dispatch: (permission, isAvailable) => {
+    dispatch(unlockPermission(permission, isAvailable))
   }
 });
 

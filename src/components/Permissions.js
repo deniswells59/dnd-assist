@@ -11,7 +11,7 @@ const Permissions = ({ permissions, dispatch }) => (
           backgroundColor: permissions[key] ? 'green' : 'red',
         }}
         onClick={() => {
-          dispatch(key);
+          dispatch(key, !permissions[key]);
         }}
       >{key}</button>
     ))}

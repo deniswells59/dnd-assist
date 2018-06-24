@@ -21,7 +21,7 @@ class AppComponent extends Component {
 
     return (
       <div className="main">
-        <SoundBoard hideDropdown />
+        <SoundBoard customStyle={{ display: 'none' }} hideDropdown />
         <Route exact path='/' render={() => <Main user={user} />} />
         <Route exact path='/chat' render={() => <MessagesList />} />
         <Route exact path='/tools' render={() => <ToolList />} />
