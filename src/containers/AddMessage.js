@@ -1,10 +1,10 @@
 import { connect } from 'react-redux'
 import AddMessageComponent from '../components/AddMessage'
-import { addMessage } from '../actions'
+import { socketActions } from '../actions'
 
 const mapDispatchToProps = dispatch => ({
   dispatch: (message, author) => {
-    dispatch(addMessage(message, author))
+    dispatch(socketActions.outgoing.addMessage(message, author))
   }
 })
 

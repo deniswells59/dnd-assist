@@ -19,21 +19,6 @@ const initSockets = () => {
       console.log(data);
       switch(data.type) {
 
-        case 'ADD_USER': {
-          users.push({ name: data.name })
-
-          ws.send(JSON.stringify({
-            type: 'USERS_LIST',
-            users
-          }));
-
-          broadcast({
-            type: 'USERS_LIST',
-            users,
-          }, ws);
-          break;
-        }
-
         case 'ADD_MESSAGE':
           broadcast({
             type: 'ADD_MESSAGE',
@@ -66,6 +51,7 @@ const initSockets = () => {
             user: data.user,
           }, ws);
           break;
+
         case 'UPDATE_USER_SUCCESS':
           broadcast({
             type: 'PLAYER_UPDATED',
@@ -84,10 +70,11 @@ const initSockets = () => {
     })
 
     ws.on('close', () => {
-      broadcast({
-        type: 'USERS_LIST',
-        users
-      }, ws)
+      // TODO REMOVE USER 
+      // broadcast({
+      //   type: 'USERS_LIST',
+      //   users
+      // }, ws)
     })
   })
 };

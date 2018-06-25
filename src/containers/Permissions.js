@@ -1,13 +1,13 @@
 import { connect } from 'react-redux'
 import PermissionsComponent from '../components/Permissions'
-import { unlockPermission, unlockTutorial } from '../actions'
+import { socketActions } from '../actions'
 
 const mapDispatchToProps = dispatch => ({
   dispatch: (permission, isAvailable) => {
-    dispatch(unlockPermission(permission, isAvailable))
+    dispatch(socketActions.outgoing.unlockPermission(permission, isAvailable))
   },
   tutorialComplete: () => {
-    dispatch(unlockTutorial())
+    dispatch(socketActions.outgoing.unlockTutorial())
   },
 });
 

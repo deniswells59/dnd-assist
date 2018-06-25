@@ -5,27 +5,28 @@ import withMenu from "./withMenu";
 
 import { AddMessage } from "../containers/AddMessage";
 
-const MessagesList = ({ messages }) => (
-  <div>
-    <section id="messages-list">
-      <ul>
-        {messages.map(message => (
-          <Message
-            key={message.id}
-            {...message}
-          />
-        ))}
-      </ul>
-    </section>
-    <AddMessage />
-  </div>
-)
+const MessagesList = ({ messages }) => {
+  return (
+    <div>
+      <section id="messages-list">
+        <ul>
+          {messages.map(message => (
+            <Message
+              key={Date.now()}
+              {...message}
+            />
+          ))}
+        </ul>
+      </section>
+      <AddMessage />
+    </div>
+  );
+}
 
 
 MessagesList.propTypes = {
   messages: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.number.isRequired,
       message: PropTypes.string.isRequired,
       author: PropTypes.string.isRequired
     }).isRequired
