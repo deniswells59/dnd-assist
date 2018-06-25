@@ -105,15 +105,15 @@ const handleReceiveTutorial = function* receiveTutorial() {
     try {
       const oldUser = yield select(getUserFromStore);
 
-      const newUser = {
+      const user = {
         ...oldUser,
         tutorialComplete: true,
       }
 
-      yield call(userUpdateApi, newUser);
-      storage.user.save(newUser);
+      yield call(userUpdateApi, user);
+      storage.user.save(user);
 
-
+      yield put({ type: types.UPDATE_USER_SUCCESS, user });
     } catch(e) {
       // TODO
     }

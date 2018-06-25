@@ -1,17 +1,37 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
+
 import PlayerInfo from './PlayerInfo';
 import Editor from './Editor';
 
 class Player extends Component {
 
   componentWillReceiveProps(newProps) {
-    const { user, dispatchConnectToSocket } = newProps;
-    const { socket } = newProps;
+    this.attemptToConnect(newProps);
+
+    const { history } = this.props;
+
+    const oldTutorialComplete = this.props.user.tutorialComplete;
+    const newTutorialComplete = newProps.user.tutorialComplete;
+
+    if(!oldTutorialComplete && newTutorialComplete) {
+      history.push('/');
+    }
+  }
+
+  componentDidMount() {
+    this.attemptToConnect(this.props);
+  }
+
+  attemptToConnect = (props) => {
+    const { user, socket, dispatchConnectToSocket } = props;
 
     if(socket && socket.open && !socket.connected) {
+      console.log('Connect!')
       dispatchConnectToSocket(user);
     }
+
   }
 
   openEditor = (items) => {
@@ -99,4 +119,4 @@ Player.propTypes = {
   })
 };
 
-export default Player;
+export default withRouter(Player);

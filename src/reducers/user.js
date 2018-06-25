@@ -3,7 +3,7 @@ import * as types from '../constants/ActionTypes'
 const initialState = {
   id: null,
   name: null,
-  tutorialComplete: false,
+  tutorialComplete: true,
 };
 
 const users = (state = initialState, action) => {
