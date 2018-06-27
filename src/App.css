@@ -4,7 +4,8 @@
   margin: 0;
 }
 body {
-    font-family: "Press Start 2P";
+  font-family: "Press Start 2P";
+  background-color: 
 }
 #container {
     display: grid;
@@ -40,7 +41,7 @@ body {
     border-right: 1px solid #3f3f3f;
     height: 100%;
 }
-#permissions, #soundboard {
+#permissions, #soundboard, #translator {
   position: fixed;
   top: 10px;
   z-index: 100;
@@ -48,6 +49,7 @@ body {
   border: 3px solid;
 }
 #permissions button,
+#translator button,
 #soundboard button {
   font-family: "Press Start 2P";
   display: block;
@@ -61,6 +63,10 @@ body {
 }
 #soundboard {
   right: 300px;
+}
+#translator {
+  right: 475px;
+  background-color: #fff;
 }
 .dropdown-close {
   position: absolute;
@@ -311,7 +317,8 @@ div.-overlay {
 }
 
 @media (max-width: 1200px) {
-  #soundboard {
+  #soundboard,
+  .translator .letter-lineup {
     display: none;
   }
 }
@@ -332,4 +339,19 @@ div.-overlay {
 .tool-wrapper a {
   text-decoration: none;
   color: black;
+}
+.translator textarea {
+  border: 2px solid;
+  width: 100%;
+  font-family: "Press Start 2P";
+  padding: 4px;
+}
+
+.translator .letter-lineup {
+  text-align: left;
+}
+
+.translation {
+  white-space: pre-wrap;
+  text-align: left;
 }

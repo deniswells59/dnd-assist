@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Player from './Player';
+import Translator from './Translator';
 import { SoundBoard } from '../containers/SoundBoard';
 import { Permissions } from '../containers/Permissions';
-
 
 const Admin = ({ user, admin, dispatchSound }) => (
   <div>
@@ -31,6 +31,10 @@ const Admin = ({ user, admin, dispatchSound }) => (
       <Permissions
         cssId="permissions"
         name="Permissions"
+      />
+      <Translator
+        cssId="translator"
+        name="Translator"
       />
     </div>
   </div>

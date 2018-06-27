@@ -13,6 +13,7 @@ import { SoundBoard } from "./containers/SoundBoard";
 import { ToolList } from "./containers/ToolList";
 
 import Map from "./components/Map";
+import Translator from "./components/Translator";
 
 class AppComponent extends Component {
 
@@ -26,6 +27,7 @@ class AppComponent extends Component {
         <Route exact path='/chat' render={() => <MessagesList />} />
         <Route exact path='/tools' render={() => <ToolList />} />
         <Route exact path='/map' render={() => <Map />} />
+        <Route exact path='/translator' render={() => <Translator hideDropdown />} />
         <Route path='/player' render={() => (
           user && user._id ? (
             <Player withMenu />

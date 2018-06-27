@@ -29,7 +29,7 @@ class ToolList extends Component {
             key={i}
             className="tool-wrapper">
             <Link
-              to={permissions[p] ? '/map' : ''}
+              to={permissions[p] ? `/${p}` : ''}
             >
               {permissions[p] ? <p>{p}</p> : <p>????????</p>}
             </Link>

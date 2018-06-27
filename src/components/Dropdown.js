@@ -25,10 +25,12 @@ const Dropdown = (WrappedComponent) => {
               <WrappedComponent
                 {...this.props}
               />
-              <button
-                onClick={this.closeDropdown}
-                className="dropdown-close"
-              >X</button>
+              {!hideDropdown && (
+                <button
+                  onClick={this.closeDropdown}
+                  className="dropdown-close"
+                >X</button>
+              )}
             </div>
           ) : (
             <div

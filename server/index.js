@@ -16,7 +16,7 @@ socket.initSockets();
 // Database Setup
 mongoose.connect('mongodb://localhost:auth/dnd-assist');
 
-var whitelist = ['http://localhost:3000', 'http://192.168.86.70:3000'];
+var whitelist = ['http://localhost:3000', 'http://192.168.86.66:3000'];
 var corsOptions = {
   origin: function (origin, callback) {
     if (whitelist.indexOf(origin) !== -1) {
