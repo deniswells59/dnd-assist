@@ -5,7 +5,7 @@
 }
 body {
   font-family: "Press Start 2P";
-  background-color: 
+  background-color:
 }
 #container {
     display: grid;
@@ -354,4 +354,31 @@ div.-overlay {
 .translation {
   white-space: pre-wrap;
   text-align: left;
+}
+
+.pictureBook {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.pictureBook img {
+  width: 80%;
+  height: auto;
+  margin: 40px 0;
+}
+
+.pictureBook-controls {
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  right: 0;
+}
+
+.pictureBook-controls button {
+  font-size: 48px;
+  font-family: "Press Start 2P";
+  margin: 0 50px;
 }

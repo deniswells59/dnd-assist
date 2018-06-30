@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Dropdown from './Dropdown';
-import PropTypes from 'prop-types';
 
 const alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 const glitterian = ['O','L','S','B','O','F','N','H','E','','Z','S','M','F','A','V','','L','Z','R','I','W','','I','N',''];

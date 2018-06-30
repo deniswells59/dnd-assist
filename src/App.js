@@ -14,6 +14,7 @@ import { ToolList } from "./containers/ToolList";
 
 import Map from "./components/Map";
 import Translator from "./components/Translator";
+import PictureBook from "./components/PictureBook";
 
 class AppComponent extends Component {
 
@@ -28,6 +29,7 @@ class AppComponent extends Component {
         <Route exact path='/tools' render={() => <ToolList />} />
         <Route exact path='/map' render={() => <Map />} />
         <Route exact path='/translator' render={() => <Translator hideDropdown />} />
+        <Route exact path='/pictureBook' render={() => <PictureBook />} />
         <Route path='/player' render={() => (
           user && user._id ? (
             <Player withMenu />
