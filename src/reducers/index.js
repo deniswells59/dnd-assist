@@ -7,6 +7,7 @@ import user from './user';
 import permissions from './permissions';
 import sounds from './sounds';
 import player from './player';
+import timer from './timer';
 
 const rootReducer = combineReducers({
   sounds,
@@ -16,6 +17,7 @@ const rootReducer = combineReducers({
   player,
   admin,
   socket,
+  timer,
 });
 
 export default rootReducer;

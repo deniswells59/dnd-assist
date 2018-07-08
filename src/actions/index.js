@@ -43,3 +43,8 @@ export const checkUser = () => ({
 export const socketOpened = () => ({
   type: types.SOCKET_OPEN,
 });
+
+export const updateTimer = timer => ({
+  type: types.UPDATE_TIMER,
+  timer,
+});

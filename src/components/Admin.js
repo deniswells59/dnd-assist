@@ -4,6 +4,7 @@ import Player from './Player';
 import Translator from './Translator';
 import { SoundBoard } from '../containers/SoundBoard';
 import { Permissions } from '../containers/Permissions';
+import { Timer } from '../containers/Timer';
 
 const Admin = ({ user, admin, dispatchSound }) => (
   <div>
@@ -35,6 +36,10 @@ const Admin = ({ user, admin, dispatchSound }) => (
       <Translator
         cssId="translator"
         name="Translator"
+      />
+      <Timer
+        cssId="timer"
+        name="Timer"
       />
     </div>
   </div>
