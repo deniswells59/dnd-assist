@@ -30,9 +30,10 @@
   },
   "scripts": {
     "start": "yarn start-server && react-scripts start",
-    "build": "yarn start-server && react-scripts build",
+    "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "start-server": "node ./server/index.js"
-  }
+  },
+  "proxy": "http://localhost:3090"
 }
