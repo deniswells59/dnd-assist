@@ -16,20 +16,20 @@ socket.initSockets();
 // Database Setup
 mongoose.connect('mongodb://localhost:auth/dnd-assist');
 
-var whitelist = ['http://localhost:3000', 'http://192.241.216.171:5000'];
-var corsOptions = {
-  origin: function (origin, callback) {
-    if (whitelist.indexOf(origin) !== -1) {
-      callback(null, true)
-    } else {
-      callback(new Error('Not allowed by CORS'))
-    }
-  }
-}
+// var whitelist = ['http://localhost:3000', 'http://192.241.216.171:5000'];
+// var corsOptions = {
+//   origin: function (origin, callback) {
+//     if (whitelist.indexOf(origin) !== -1) {
+//       callback(null, true)
+//     } else {
+//       callback(new Error('Not allowed by CORS'))
+//     }
+//   }
+// }
 
 // App/Middleware Setup
 app.use(morgan('combined')); // Logging debugging
-app.use(cors()) // Handles CORS
+// app.use(cors()) // Handles CORS
 app.use(bodyParser.json({ type: '*/*' })); // Parses incoming requests as JSON
 
 router(app);
