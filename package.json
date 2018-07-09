@@ -4,19 +4,7 @@
   "private": true,
   "dependencies": {
     "axios": "^0.18.0",
-    "bcrypt-nodejs": "^0.0.3",
-    "body-parser": "^1.18.3",
     "chance": "^1.0.13",
-    "cookie-parser": "^1.4.3",
-    "cors": "^2.8.4",
-    "dotenv": "^6.0.0",
-    "express": "^4.16.3",
-    "jwt-simple": "^0.5.1",
-    "mongoose": "^5.2.1",
-    "morgan": "^1.9.0",
-    "passport": "^0.4.0",
-    "passport-jwt": "^4.0.0",
-    "passport-local": "^1.0.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-redux": "^5.0.7",
@@ -29,11 +17,9 @@
     "ws": "^5.0.0"
   },
   "scripts": {
-    "start": "yarn start-server && react-scripts start",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
-    "start-server": "node ./server/index.js"
-  },
-  "proxy": "http://localhost:3090"
+    "eject": "react-scripts eject"
+  }
 }
