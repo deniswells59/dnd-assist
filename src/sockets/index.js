@@ -3,7 +3,7 @@ import * as types from '../constants/ActionTypes';
 import { socketOpened, socketActions } from '../actions';
 import storage from '../storage';
 
-const address = '192.241.216.171/:8989';
+const address = '192.241.216.171:8989';
 
 const setupSocket = dispatch => {
   const socket = new WebSocket(`ws://${address}`);
