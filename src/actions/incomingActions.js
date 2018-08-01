@@ -27,6 +27,10 @@ export const playerConnected = user => ({
   user
 });
 
+export const reconnectAttempt = () => ({
+  type: types.ADMIN_RECONNECT_ATTEMPT,
+});
+
 export const playerUpdated = user => ({
   type: types.PLAYER_UPDATED,
   user

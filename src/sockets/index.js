@@ -3,7 +3,7 @@ import * as types from '../constants/ActionTypes';
 import { socketOpened, socketActions } from '../actions';
 import storage from '../storage';
 
-const address = '192.241.216.171:8989';
+const address = '192.168.86.133:8989';
 
 const setupSocket = dispatch => {
   const socket = new WebSocket(`ws://${address}`);
@@ -35,6 +35,9 @@ const setupSocket = dispatch => {
         break;
       case types.RECEIVE_TUTORIAL_COMPLETE:
         dispatch(socketActions.incoming.tutorialComplete());
+        break;
+      case types.ADMIN_RECONNECT_ATTEMPT:
+        dispatch(socketActions.incoming.reconnectAttempt());
         break;
       default:
         break;

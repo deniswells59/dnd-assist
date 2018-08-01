@@ -4,7 +4,7 @@ import * as types from '../constants/ActionTypes';
 
 import storage from '../storage';
 
-const getUrl = path => `http://192.241.216.171/:3090/${path}`;
+const getUrl = path => `http://192.168.86.133:3090/${path}`;
 const getAuthUrl = path => `${getUrl(path)}?auth=${storage.user.getJWT()}`;
 
 const getUserFromStore = state => state.user;
@@ -17,8 +17,12 @@ const handleNewMessage = function* handleNewMessage(params) {
 }
 
 const handlePlayerConnect = function* handlePlayerConnect(params) {
-  yield takeEvery(types.CONNECT_TO_SOCKET, (action) => {
-    params.socket.send(JSON.stringify(action));
+  yield takeEvery([types.CONNECT_TO_SOCKET, types.ADMIN_RECONNECT_ATTEMPT], (action) => {
+    params.socket.send(JSON.stringify({
+      ...action,
+      user: storage.user.get(),
+      type: types.CONNECT_TO_SOCKET,
+    }));
   })
 }
 
@@ -41,7 +45,14 @@ const handleSoundPlay = function* handleSoundPlay(params) {
   })
 }
 
-const handlePlayerUpdate= function* handleSoundPlay(params) {
+
+const handleReconnect = function* handleReconnnectToPlayers(params) {
+  yield takeEvery(types.RECONNECT_TO_PLAYERS, (action) => {
+    params.socket.send(JSON.stringify(action));
+  })
+}
+
+const handlePlayerUpdate= function* handleUpdate(params) {
   yield takeEvery(types.UPDATE_USER_SUCCESS, (action) => {
     params.socket.send(JSON.stringify(action));
   })
@@ -123,6 +134,7 @@ const handleReceiveTutorial = function* receiveTutorial() {
 export default function* rootSaga(params) {
   yield all([
     handleSoundPlay(params),
+    handleReconnect(params),
     handleNewMessage(params),
     handleUnlockPermissions(params),
     handlePlayerConnect(params),

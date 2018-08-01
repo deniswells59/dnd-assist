@@ -20,3 +20,7 @@ export const connectToSocket = user => ({
   type: types.CONNECT_TO_SOCKET,
   user
 });
+
+export const reconnectToPlayers = () => ({
+  type: types.RECONNECT_TO_PLAYERS,
+});

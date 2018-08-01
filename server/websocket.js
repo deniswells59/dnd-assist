@@ -64,13 +64,19 @@ const initSockets = () => {
             type: 'RECEIVE_TUTORIAL_COMPLETE',
           });
           break;
+
+        case 'RECONNECT_TO_PLAYERS':
+          broadcast({
+            type: 'ADMIN_RECONNECT_ATTEMPT',
+          });
+          break;
         default:
           break;
       }
     })
 
     ws.on('close', () => {
-      // TODO REMOVE USER 
+      // TODO REMOVE USER
       // broadcast({
       //   type: 'USERS_LIST',
       //   users

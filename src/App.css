@@ -51,7 +51,8 @@ body {
 #permissions button,
 #translator button,
 #timer button,
-#soundboard button {
+#soundboard button,
+button {
   font-family: "Press Start 2P";
   display: block;
   background-color: #fff;
@@ -429,4 +430,16 @@ div.-overlay {
   left: 0;
   right: 0;
   z-index: 200;
+}
+
+button.reconnect {
+  position: absolute;
+  left: 50px;
+  top: 20px;
+  padding: 10px;
+  font-size: 16px;
+}
+
+.admin {
+  margin-top: 48px;
 }
