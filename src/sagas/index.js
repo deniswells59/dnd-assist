@@ -4,7 +4,7 @@ import * as types from '../constants/ActionTypes';
 
 import storage from '../storage';
 
-const getUrl = path => `http://192.168.86.133:3090/${path}`;
+const getUrl = path => `http://142.93.25.195:3090/${path}`;
 const getAuthUrl = path => `${getUrl(path)}?auth=${storage.user.getJWT()}`;
 
 const getUserFromStore = state => state.user;
