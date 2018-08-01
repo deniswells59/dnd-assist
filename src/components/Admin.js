@@ -4,6 +4,7 @@ import Player from './Player';
 import Translator from './Translator';
 import { SoundBoard } from '../containers/SoundBoard';
 import { Permissions } from '../containers/Permissions';
+import { Users } from '../containers/Users';
 // import { Timer } from '../containers/Timer';
 import { Reconnect } from '../containers/Reconnect';
 
@@ -37,6 +38,10 @@ const Admin = ({ user, admin, dispatchSound }) => (
       <Translator
         cssId="translator"
         name="Translator"
+      />
+      <Users
+        cssId="users"
+        name="Users"
       />
 
       <Reconnect />

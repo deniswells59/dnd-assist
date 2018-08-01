@@ -48,3 +48,8 @@ export const updateTimer = timer => ({
   type: types.UPDATE_TIMER,
   timer,
 });
+
+export const signUp = name => ({
+  type: types.SIGN_UP_USER,
+  name,
+});

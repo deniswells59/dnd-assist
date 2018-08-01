@@ -21,7 +21,7 @@ exports.signin = function(req, res, next) {
 exports.signup = function(req, res, next) {
   const
     name = req.body.name,
-    password = req.body.password;
+    password = process.env.USER_PASSWORD;
 
   // Handle the case of someone only providing an name, or password, not both.
   if (!name || !password) {
@@ -42,6 +42,7 @@ exports.signup = function(req, res, next) {
     // If a user with an name does not exist, create and save use record
     const user = new User({
       ...req.body,
+      password,
       traits: ['traits', 'about', 'you'],
       hitPoints: ['10/10'],
       expPoints: ['5000'],

@@ -62,6 +62,10 @@ const userLoginApi = data => {
   return axios.post(getUrl('signin'), data);
 }
 
+const userSignUp = data => {
+  return axios.post(getUrl('signup'), data);
+}
+
 const userUpdateApi = data => {
   return axios.post(getAuthUrl('update'), data);
 }
@@ -131,6 +135,17 @@ const handleReceiveTutorial = function* receiveTutorial() {
   })
 }
 
+const handleSignUp = function* signUp() {
+  yield takeLatest(types.SIGN_UP_USER, function* signUpUser(action) {
+    try {
+      console.log(action);
+      yield call(userSignUp, { name: action.name });
+    } catch (e) {
+      // TODO
+    }
+  })
+}
+
 export default function* rootSaga(params) {
   yield all([
     handleSoundPlay(params),
@@ -144,5 +159,6 @@ export default function* rootSaga(params) {
     handleUserCheck(),
     handleUserUpdate(),
     handleReceiveTutorial(),
+    handleSignUp(),
   ])
 };
